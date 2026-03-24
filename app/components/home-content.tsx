@@ -1,5 +1,3 @@
-"use client";
-
 import { Header } from "./header";
 import { Hero } from "./sections/hero";
 import { About } from "./sections/about";

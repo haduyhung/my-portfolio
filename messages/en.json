@@ -1,0 +1,237 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact",
+    "blog": "Blog"
+  },
+  "hero": {
+    "greeting": "Hello, I'm",
+    "tagline": "Building modern web & mobile experiences",
+    "description": "A passionate Frontend Developer with 3.5+ years of experience crafting responsive, performant, and user-friendly digital products using React, Next.js, and React Native.",
+    "viewWork": "View My Work",
+    "getInTouch": "Get In Touch"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Get to know me better",
+    "summary": "I am a professional frontend developer with 3.5+ years of experience in building web and mobile applications. With strong creative and analytical thinking, attention to detail, and a teamwork-driven mindset. I continuously improve my workflow by making use of AI-assisted development tools.",
+    "specialization": "I specialize in building modern web applications with <react>React</react>, <nextjs>Next.js</nextjs>, and <typescript>TypeScript</typescript>, while also having hands-on experience with mobile development using <reactNative>React Native</reactNative> and <kotlin>Kotlin</kotlin>. I am passionate about leveraging AI-assisted tools to boost productivity and deliver high-quality code.",
+    "highlights": {
+      "experience": "Experience",
+      "experienceValue": "3.5+ Years",
+      "location": "Location",
+      "education": "Education",
+      "born": "Born"
+    }
+  },
+  "skills": {
+    "title": "Skills & Technologies",
+    "subtitle": "Tools and technologies I work with",
+    "categories": {
+      "frontendCore": "Frontend Core",
+      "stateManagement": "State Management",
+      "uiLibraries": "UI Libraries & Styling",
+      "mobile": "Mobile & Cross-platform",
+      "tools": "Tools & Others",
+      "ai": "AI-Assisted Development"
+    }
+  },
+  "experience": {
+    "title": "Experience",
+    "subtitle": "My professional journey",
+    "katech": {
+      "role": "Front-end Developer",
+      "description": "Working on Katech landing page and Let's Goo - a trip planning & travel service booking app.",
+      "responsibilities": [
+        "Maintain and optimize the Katech landing page, fix UI/UX issues",
+        "Develop core mobile features for Let's Goo app including trip creation, itinerary management, and service booking modules",
+        "Utilize MCP for AI-powered Figma design analysis and Claude Code for coding assistance",
+        "Work with OpenAPI YAML specifications and OpenAPI Generator to automate API client creation"
+      ]
+    },
+    "techhub": {
+      "role": "Front-end & Mobile Developer",
+      "description": "Built two major products: LearnHub (e-learning platform) and Giftly (e-commerce website).",
+      "responsibilities": [
+        "Built responsive and user-friendly interfaces with optimized performance",
+        "Implemented interactive learning features: progress tracking, course navigation",
+        "Built e-commerce features: search, filtering, cart, checkout flow",
+        "Collaborated with backend APIs and optimized frontend performance for better UX"
+      ]
+    },
+    "viettel": {
+      "role": "Front-end Developer",
+      "description": "Onsite developer for VCS-SOAR (Security Orchestration, Automation and Response) platform.",
+      "responsibilities": [
+        "Built project interfaces and functionality based on Figma design",
+        "Coordinated with Back-end (API) and BA teams",
+        "Wrote unit tests to cover code and ensured code quality with Checkmarx, SonarQube, and SCA"
+      ]
+    },
+    "reactplus": {
+      "role": "Mobile Developer",
+      "description": "Worked on a Nocode platform that enables app development through drag-and-drop components, serving Japanese customers.",
+      "responsibilities": [
+        "Developed new components and features for the Nocode platform",
+        "Worked in a team of up to 20 members at peak",
+        "Built features using ReactJS for frontend and React Native for mobile"
+      ]
+    }
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "subtitle": "Highlights from my professional work",
+    "categories": {
+      "web": "Web App",
+      "mobile": "Mobile App",
+      "fullstack": "Full Stack"
+    },
+    "letsGoo": {
+      "title": "Let's Goo",
+      "description": "A trip planning application that allows users to create and manage travel itineraries, book services such as accommodation, car rental, bus tickets, flights, attractions, and restaurants within each trip, with social features for sharing travel journeys.",
+      "longDescription": "Let's Goo is a comprehensive trip planning application designed to simplify travel experiences. Users can create detailed travel itineraries, book a wide range of services including accommodation, car rentals, bus tickets, flights, tourist attractions, and restaurants — all within a single trip. The app also features a social component where users can share their travel journeys and follow others for inspiration. Built with a focus on seamless mobile experience and powered by AI-assisted development workflows.",
+      "highlights": [
+        "Trip creation & itinerary management",
+        "Multi-service booking (hotels, flights, car rental, buses)",
+        "Social features for sharing travel journeys",
+        "AI-powered Figma design analysis with MCP"
+      ],
+      "responsibilities": [
+        "Developed core mobile features including trip creation, itinerary management, and service booking modules (accommodation, car rental, flights, bus tickets, attractions)",
+        "Integrated APIs and optimized app performance",
+        "Utilized MCP for AI-powered Figma design analysis",
+        "Leveraged Claude Code for coding assistance",
+        "Worked with backend-provided OpenAPI YAML specifications and used OpenAPI Generator to automate API client creation"
+      ]
+    },
+    "learnhub": {
+      "title": "LearnHub",
+      "description": "An online learning platform that allows users to access and study courses anytime and anywhere, supports video lectures, quizzes, and learning progress tracking with Admin/Instructor/Student roles.",
+      "longDescription": "LearnHub is a full-featured e-learning web application that provides a seamless online learning experience. The platform supports video lectures, interactive quizzes, and comprehensive learning progress tracking. It features a multi-role management system with Admin, Instructor, and Student roles, each with tailored dashboards and functionalities. The application was built with a strong emphasis on responsive design and frontend performance optimization.",
+      "highlights": [
+        "Video lectures & quiz system",
+        "Learning progress tracking",
+        "Multi-role management (Admin/Instructor/Student)",
+        "Responsive & performance optimized"
+      ],
+      "responsibilities": [
+        "Built responsive and user-friendly interfaces",
+        "Optimized frontend performance for fast page loads",
+        "Implemented interactive learning features such as progress tracking and course navigation",
+        "Collaborated with backend team on API integration"
+      ]
+    },
+    "giftly": {
+      "title": "Giftly",
+      "description": "An e-commerce platform that allows users to browse and purchase products online, supports shopping cart, payment, and order management with a comprehensive admin system.",
+      "longDescription": "Giftly is a modern e-commerce platform designed to deliver a smooth online shopping experience. Users can browse products, use advanced search and filtering, manage their shopping cart, and complete purchases through a streamlined checkout flow. The platform includes a comprehensive admin system for managing products, categories, orders, and users. Built with focus on frontend performance and great user experience.",
+      "highlights": [
+        "Product search & filtering",
+        "Shopping cart & checkout flow",
+        "Order management system",
+        "Admin dashboard for products, categories & users"
+      ],
+      "responsibilities": [
+        "Built interactive e-commerce features including search, filtering, cart, and checkout",
+        "Collaborated with backend APIs for seamless data flow",
+        "Optimized frontend performance for better UX",
+        "Implemented responsive design across all devices"
+      ]
+    },
+    "nocodePlatform": {
+      "title": "Nocode Platform",
+      "description": "A platform that supports developing apps without coding by dragging and dropping available components, serving Japanese customers with a team of up to 20 members.",
+      "longDescription": "The Nocode Platform is an innovative development tool that enables users to build applications without writing code. Through an intuitive drag-and-drop interface, users can assemble available components to create functional web and mobile applications. The platform was developed for Japanese enterprise customers with a peak team size of 20 members, featuring both a ReactJS-based web frontend and React Native mobile support.",
+      "highlights": [
+        "Drag & drop app builder",
+        "Custom component development",
+        "Cross-platform (Web & Mobile)",
+        "Served Japanese enterprise customers"
+      ],
+      "responsibilities": [
+        "Developed new components and features for the Nocode platform",
+        "Worked in a cross-functional team of up to 20 members",
+        "Built features using ReactJS for frontend and React Native for mobile",
+        "Collaborated with Japanese customer requirements and specifications"
+      ]
+    },
+    "vcsSoar": {
+      "title": "VCS - SOAR",
+      "description": "Security Orchestration, Automation and Response platform for Viettel Cyber Security, designed to automate and streamline security operations.",
+      "longDescription": "VCS-SOAR (Security Orchestration, Automation and Response) is an enterprise-grade security platform developed for Viettel Cyber Security. The platform is designed to automate and streamline security operations, enabling security teams to respond to threats more efficiently. Built with Angular 11 on the frontend and Python/Golang on the backend, the project emphasized code quality through comprehensive unit testing and static analysis tools.",
+      "highlights": [
+        "Security orchestration & automation",
+        "Built on Figma design specifications",
+        "Unit testing with high code coverage",
+        "Code quality ensured with Checkmarx & SonarQube"
+      ],
+      "responsibilities": [
+        "Built project interfaces and functionality based on Figma design specifications",
+        "Coordinated with Back-end (API) and BA teams for seamless integration",
+        "Wrote unit tests to ensure high code coverage",
+        "Ensured code quality using Checkmarx, SonarQube, and SCA tools"
+      ]
+    },
+    "detail": {
+      "overview": "Overview",
+      "keyFeatures": "Key Features",
+      "myResponsibilities": "My Responsibilities",
+      "myRole": "My Role",
+      "techStack": "Tech Stack",
+      "projectInfo": "Project Info",
+      "company": "Company",
+      "period": "Period",
+      "type": "Type",
+      "teamSize": "Team Size",
+      "teamMembers": "{count} members",
+      "otherProjects": "Other Projects",
+      "backToProjects": "Back to Projects"
+    }
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Let's work together on something great",
+    "intro": "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out!",
+    "email": "Email",
+    "phone": "Phone",
+    "location": "Location",
+    "education": "Education",
+    "interests": "Interests",
+    "english": "English",
+    "englishLevel": "Able to read, understand, and write documents"
+  },
+  "education": {
+    "school": "Electric Power University",
+    "major": "Information Technology",
+    "status": "Graduated"
+  },
+  "interests": {
+    "items": [
+      "Exploring new technologies",
+      "Playing strategy games like chess and Go to improve problem-solving skills"
+    ]
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "builtWith": "Built with"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "backHome": "Back to Home"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Thoughts, tutorials, and insights",
+    "readMore": "Read more",
+    "minRead": "{count} min read",
+    "noPosts": "No posts yet. Stay tuned!",
+    "backToBlog": "Back to Blog",
+    "publishedOn": "Published on {date}",
+    "tags": "Tags"
+  }
+}

@@ -1,16 +1,15 @@
 export interface Skill {
   name: string;
-  icon?: string;
 }
 
 export interface SkillCategory {
-  title: string;
+  i18nKey: string;
   skills: Skill[];
 }
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
-    title: "Frontend Core",
+    i18nKey: "frontendCore",
     skills: [
       { name: "ReactJS" },
       { name: "Next.js" },
@@ -21,7 +20,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     ],
   },
   {
-    title: "State Management",
+    i18nKey: "stateManagement",
     skills: [
       { name: "Zustand" },
       { name: "Redux Toolkit" },
@@ -30,7 +29,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     ],
   },
   {
-    title: "UI Libraries & Styling",
+    i18nKey: "uiLibraries",
     skills: [
       { name: "Tailwind CSS" },
       { name: "Shadcn/ui" },
@@ -41,7 +40,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     ],
   },
   {
-    title: "Mobile & Cross-platform",
+    i18nKey: "mobile",
     skills: [
       { name: "React Native" },
       { name: "Kotlin Jetpack" },
@@ -49,7 +48,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     ],
   },
   {
-    title: "Tools & Others",
+    i18nKey: "tools",
     skills: [
       { name: "Git" },
       { name: "Figma" },
@@ -60,7 +59,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     ],
   },
   {
-    title: "AI-Assisted Development",
+    i18nKey: "ai",
     skills: [
       { name: "Claude Code" },
       { name: "MCP" },

@@ -1,5 +1,4 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import { ROOT_METADATA } from "./constants";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,8 +11,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = ROOT_METADATA;
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -21,7 +18,6 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       suppressHydrationWarning
     >

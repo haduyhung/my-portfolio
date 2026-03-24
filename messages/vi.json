@@ -1,0 +1,237 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu",
+    "skills": "Kỹ năng",
+    "experience": "Kinh nghiệm",
+    "projects": "Dự án",
+    "contact": "Liên hệ",
+    "blog": "Blog"
+  },
+  "hero": {
+    "greeting": "Xin chào, tôi là",
+    "tagline": "Xây dựng trải nghiệm web & mobile hiện đại",
+    "description": "Lập trình viên Frontend với hơn 3.5 năm kinh nghiệm phát triển các sản phẩm số responsive, hiệu năng cao và thân thiện với người dùng sử dụng React, Next.js và React Native.",
+    "viewWork": "Xem Dự Án",
+    "getInTouch": "Liên Hệ"
+  },
+  "about": {
+    "title": "Về Tôi",
+    "subtitle": "Tìm hiểu thêm về tôi",
+    "summary": "Tôi là lập trình viên frontend chuyên nghiệp với hơn 3.5 năm kinh nghiệm xây dựng ứng dụng web và mobile. Với tư duy sáng tạo, phân tích mạnh mẽ, chú ý đến chi tiết và tinh thần làm việc nhóm. Tôi liên tục cải thiện quy trình làm việc bằng cách sử dụng các công cụ phát triển hỗ trợ bởi AI.",
+    "specialization": "Tôi chuyên xây dựng ứng dụng web hiện đại với <react>React</react>, <nextjs>Next.js</nextjs> và <typescript>TypeScript</typescript>, đồng thời có kinh nghiệm thực tế với phát triển mobile sử dụng <reactNative>React Native</reactNative> và <kotlin>Kotlin</kotlin>. Tôi đam mê tận dụng các công cụ hỗ trợ AI để tăng năng suất và cung cấp code chất lượng cao.",
+    "highlights": {
+      "experience": "Kinh nghiệm",
+      "experienceValue": "3.5+ Năm",
+      "location": "Địa điểm",
+      "education": "Học vấn",
+      "born": "Ngày sinh"
+    }
+  },
+  "skills": {
+    "title": "Kỹ Năng & Công Nghệ",
+    "subtitle": "Các công cụ và công nghệ tôi sử dụng",
+    "categories": {
+      "frontendCore": "Frontend Cốt Lõi",
+      "stateManagement": "Quản Lý State",
+      "uiLibraries": "Thư Viện UI & Styling",
+      "mobile": "Mobile & Đa Nền Tảng",
+      "tools": "Công Cụ & Khác",
+      "ai": "Phát Triển Hỗ Trợ AI"
+    }
+  },
+  "experience": {
+    "title": "Kinh Nghiệm",
+    "subtitle": "Hành trình nghề nghiệp của tôi",
+    "katech": {
+      "role": "Lập trình viên Front-end",
+      "description": "Làm việc trên landing page Katech và Let's Goo - ứng dụng lập kế hoạch chuyến đi & đặt dịch vụ du lịch.",
+      "responsibilities": [
+        "Bảo trì và tối ưu landing page Katech, sửa các vấn đề UI/UX",
+        "Phát triển các tính năng mobile cốt lõi cho ứng dụng Let's Goo bao gồm tạo chuyến đi, quản lý lịch trình và các module đặt dịch vụ",
+        "Sử dụng MCP để phân tích thiết kế Figma bằng AI và Claude Code để hỗ trợ lập trình",
+        "Làm việc với đặc tả OpenAPI YAML và OpenAPI Generator để tự động tạo API client"
+      ]
+    },
+    "techhub": {
+      "role": "Lập trình viên Front-end & Mobile",
+      "description": "Xây dựng hai sản phẩm chính: LearnHub (nền tảng e-learning) và Giftly (website thương mại điện tử).",
+      "responsibilities": [
+        "Xây dựng giao diện responsive và thân thiện với người dùng, tối ưu hiệu năng",
+        "Triển khai các tính năng học tập tương tác: theo dõi tiến độ, điều hướng khóa học",
+        "Xây dựng tính năng thương mại điện tử: tìm kiếm, lọc, giỏ hàng, luồng thanh toán",
+        "Phối hợp với API backend và tối ưu hiệu năng frontend cho UX tốt hơn"
+      ]
+    },
+    "viettel": {
+      "role": "Lập trình viên Front-end",
+      "description": "Lập trình viên onsite cho nền tảng VCS-SOAR (Security Orchestration, Automation and Response).",
+      "responsibilities": [
+        "Xây dựng giao diện và chức năng dự án dựa trên thiết kế Figma",
+        "Phối hợp với đội Back-end (API) và BA",
+        "Viết unit test để bao phủ code và đảm bảo chất lượng code với Checkmarx, SonarQube và SCA"
+      ]
+    },
+    "reactplus": {
+      "role": "Lập trình viên Mobile",
+      "description": "Làm việc trên nền tảng Nocode cho phép phát triển ứng dụng thông qua kéo thả component, phục vụ khách hàng Nhật Bản.",
+      "responsibilities": [
+        "Phát triển các component và tính năng mới cho nền tảng Nocode",
+        "Làm việc trong đội lên đến 20 thành viên ở thời điểm cao điểm",
+        "Xây dựng tính năng sử dụng ReactJS cho frontend và React Native cho mobile"
+      ]
+    }
+  },
+  "projects": {
+    "title": "Dự Án Nổi Bật",
+    "subtitle": "Điểm nhấn từ công việc chuyên nghiệp",
+    "categories": {
+      "web": "Ứng dụng Web",
+      "mobile": "Ứng dụng Mobile",
+      "fullstack": "Full Stack"
+    },
+    "letsGoo": {
+      "title": "Let's Goo",
+      "description": "Ứng dụng lập kế hoạch chuyến đi cho phép người dùng tạo và quản lý lịch trình du lịch, đặt các dịch vụ như chỗ ở, thuê xe, vé xe bus, vé máy bay, điểm tham quan và nhà hàng trong mỗi chuyến đi, với tính năng xã hội để chia sẻ hành trình.",
+      "longDescription": "Let's Goo là ứng dụng lập kế hoạch chuyến đi toàn diện được thiết kế để đơn giản hóa trải nghiệm du lịch. Người dùng có thể tạo lịch trình chi tiết, đặt nhiều loại dịch vụ bao gồm chỗ ở, thuê xe, vé xe bus, vé máy bay, điểm du lịch và nhà hàng — tất cả trong một chuyến đi duy nhất. Ứng dụng còn có tính năng xã hội cho phép người dùng chia sẻ hành trình và theo dõi người khác để lấy cảm hứng.",
+      "highlights": [
+        "Tạo chuyến đi & quản lý lịch trình",
+        "Đặt đa dịch vụ (khách sạn, vé máy bay, thuê xe, xe bus)",
+        "Tính năng xã hội chia sẻ hành trình",
+        "Phân tích thiết kế Figma bằng AI với MCP"
+      ],
+      "responsibilities": [
+        "Phát triển các tính năng mobile cốt lõi bao gồm tạo chuyến đi, quản lý lịch trình và các module đặt dịch vụ",
+        "Tích hợp API và tối ưu hiệu năng ứng dụng",
+        "Sử dụng MCP để phân tích thiết kế Figma bằng AI",
+        "Tận dụng Claude Code để hỗ trợ lập trình",
+        "Làm việc với đặc tả OpenAPI YAML và sử dụng OpenAPI Generator để tự động tạo API client"
+      ]
+    },
+    "learnhub": {
+      "title": "LearnHub",
+      "description": "Nền tảng học trực tuyến cho phép người dùng truy cập và học các khóa học mọi lúc mọi nơi, hỗ trợ bài giảng video, bài quiz và theo dõi tiến độ học tập với các vai trò Admin/Giảng viên/Học viên.",
+      "longDescription": "LearnHub là ứng dụng e-learning đầy đủ tính năng mang đến trải nghiệm học trực tuyến liền mạch. Nền tảng hỗ trợ bài giảng video, quiz tương tác và theo dõi tiến độ học tập toàn diện. Ứng dụng có hệ thống quản lý đa vai trò với Admin, Giảng viên và Học viên, mỗi vai trò có dashboard và chức năng riêng.",
+      "highlights": [
+        "Bài giảng video & hệ thống quiz",
+        "Theo dõi tiến độ học tập",
+        "Quản lý đa vai trò (Admin/Giảng viên/Học viên)",
+        "Responsive & tối ưu hiệu năng"
+      ],
+      "responsibilities": [
+        "Xây dựng giao diện responsive và thân thiện người dùng",
+        "Tối ưu hiệu năng frontend cho tốc độ tải trang nhanh",
+        "Triển khai các tính năng học tập tương tác như theo dõi tiến độ và điều hướng khóa học",
+        "Phối hợp với đội backend về tích hợp API"
+      ]
+    },
+    "giftly": {
+      "title": "Giftly",
+      "description": "Nền tảng thương mại điện tử cho phép người dùng duyệt và mua sản phẩm trực tuyến, hỗ trợ giỏ hàng, thanh toán và quản lý đơn hàng với hệ thống quản trị toàn diện.",
+      "longDescription": "Giftly là nền tảng thương mại điện tử hiện đại mang đến trải nghiệm mua sắm trực tuyến mượt mà. Người dùng có thể duyệt sản phẩm, sử dụng tìm kiếm và lọc nâng cao, quản lý giỏ hàng và hoàn tất mua hàng qua luồng thanh toán hợp lý. Nền tảng bao gồm hệ thống quản trị toàn diện cho quản lý sản phẩm, danh mục, đơn hàng và người dùng.",
+      "highlights": [
+        "Tìm kiếm & lọc sản phẩm",
+        "Giỏ hàng & luồng thanh toán",
+        "Hệ thống quản lý đơn hàng",
+        "Dashboard quản trị cho sản phẩm, danh mục & người dùng"
+      ],
+      "responsibilities": [
+        "Xây dựng tính năng thương mại điện tử tương tác bao gồm tìm kiếm, lọc, giỏ hàng và thanh toán",
+        "Phối hợp với API backend để đảm bảo luồng dữ liệu liền mạch",
+        "Tối ưu hiệu năng frontend cho UX tốt hơn",
+        "Triển khai thiết kế responsive trên mọi thiết bị"
+      ]
+    },
+    "nocodePlatform": {
+      "title": "Nocode Platform",
+      "description": "Nền tảng hỗ trợ phát triển ứng dụng không cần code bằng cách kéo thả các component có sẵn, phục vụ khách hàng Nhật Bản với đội ngũ lên đến 20 thành viên.",
+      "longDescription": "Nocode Platform là công cụ phát triển đổi mới cho phép người dùng xây dựng ứng dụng mà không cần viết code. Thông qua giao diện kéo thả trực quan, người dùng có thể lắp ghép các component có sẵn để tạo ứng dụng web và mobile hoạt động. Nền tảng được phát triển cho khách hàng doanh nghiệp Nhật Bản với quy mô đội cao điểm 20 thành viên.",
+      "highlights": [
+        "Trình xây dựng ứng dụng kéo & thả",
+        "Phát triển component tùy chỉnh",
+        "Đa nền tảng (Web & Mobile)",
+        "Phục vụ khách hàng doanh nghiệp Nhật Bản"
+      ],
+      "responsibilities": [
+        "Phát triển các component và tính năng mới cho nền tảng Nocode",
+        "Làm việc trong đội đa chức năng lên đến 20 thành viên",
+        "Xây dựng tính năng sử dụng ReactJS cho frontend và React Native cho mobile",
+        "Phối hợp với yêu cầu và đặc tả của khách hàng Nhật Bản"
+      ]
+    },
+    "vcsSoar": {
+      "title": "VCS - SOAR",
+      "description": "Nền tảng Security Orchestration, Automation and Response cho Viettel Cyber Security, được thiết kế để tự động hóa và tối ưu các hoạt động bảo mật.",
+      "longDescription": "VCS-SOAR là nền tảng bảo mật cấp doanh nghiệp được phát triển cho Viettel Cyber Security. Nền tảng được thiết kế để tự động hóa và tối ưu các hoạt động bảo mật, cho phép đội ngũ bảo mật phản ứng với các mối đe dọa hiệu quả hơn. Được xây dựng với Angular 11 ở frontend và Python/Golang ở backend, dự án chú trọng chất lượng code thông qua unit testing toàn diện và công cụ phân tích tĩnh.",
+      "highlights": [
+        "Tự động hóa & điều phối bảo mật",
+        "Xây dựng theo thiết kế Figma",
+        "Unit testing với độ bao phủ code cao",
+        "Đảm bảo chất lượng code với Checkmarx & SonarQube"
+      ],
+      "responsibilities": [
+        "Xây dựng giao diện và chức năng dự án dựa trên thiết kế Figma",
+        "Phối hợp với đội Back-end (API) và BA để tích hợp liền mạch",
+        "Viết unit test để đảm bảo độ bao phủ code cao",
+        "Đảm bảo chất lượng code sử dụng Checkmarx, SonarQube và công cụ SCA"
+      ]
+    },
+    "detail": {
+      "overview": "Tổng Quan",
+      "keyFeatures": "Tính Năng Chính",
+      "myResponsibilities": "Trách Nhiệm Của Tôi",
+      "myRole": "Vai Trò",
+      "techStack": "Công Nghệ",
+      "projectInfo": "Thông Tin Dự Án",
+      "company": "Công ty",
+      "period": "Thời gian",
+      "type": "Loại",
+      "teamSize": "Quy Mô Đội",
+      "teamMembers": "{count} thành viên",
+      "otherProjects": "Dự Án Khác",
+      "backToProjects": "Quay Lại Dự Án"
+    }
+  },
+  "contact": {
+    "title": "Liên Hệ",
+    "subtitle": "Hãy cùng làm việc trên điều gì đó tuyệt vời",
+    "intro": "Tôi luôn sẵn sàng thảo luận về các dự án mới, ý tưởng sáng tạo, hoặc cơ hội để trở thành một phần trong tầm nhìn của bạn. Hãy liên hệ với tôi!",
+    "email": "Email",
+    "phone": "Điện thoại",
+    "location": "Địa điểm",
+    "education": "Học Vấn",
+    "interests": "Sở Thích",
+    "english": "Tiếng Anh",
+    "englishLevel": "Có khả năng đọc, hiểu và viết tài liệu"
+  },
+  "education": {
+    "school": "Đại học Điện Lực",
+    "major": "Công nghệ Thông tin",
+    "status": "Đã tốt nghiệp"
+  },
+  "interests": {
+    "items": [
+      "Khám phá công nghệ mới",
+      "Chơi các trò chơi chiến thuật như cờ vua và cờ vây để nâng cao kỹ năng giải quyết vấn đề"
+    ]
+  },
+  "footer": {
+    "rights": "Bảo lưu mọi quyền.",
+    "builtWith": "Xây dựng với"
+  },
+  "notFound": {
+    "title": "Không Tìm Thấy Trang",
+    "description": "Trang bạn đang tìm kiếm không tồn tại hoặc đã được di chuyển.",
+    "backHome": "Về Trang Chủ"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Suy nghĩ, hướng dẫn và chia sẻ",
+    "readMore": "Đọc thêm",
+    "minRead": "{count} phút đọc",
+    "noPosts": "Chưa có bài viết. Hãy đón chờ!",
+    "backToBlog": "Quay Lại Blog",
+    "publishedOn": "Đăng ngày {date}",
+    "tags": "Thẻ"
+  }
+}

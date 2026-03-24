@@ -22,7 +22,7 @@ export function SectionHeading({ title, subtitle }: SectionHeadingProps) {
       {subtitle && (
         <p className="mt-3 text-muted-foreground text-lg">{subtitle}</p>
       )}
-      <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-gradient-to-r from-accent to-accent-secondary" />
+      <div aria-hidden="true" className="mx-auto mt-4 h-1 w-16 rounded-full bg-gradient-to-r from-accent to-accent-secondary" />
     </motion.div>
   );
 }

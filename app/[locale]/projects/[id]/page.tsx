@@ -1,28 +1,34 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { PROJECTS, SEO_DEFAULTS, SITE_URL } from "../../constants";
-import { JsonLd } from "../../components/ui/json-ld";
-import { generateProjectJsonLd } from "../../constants/json-ld";
+import { getTranslations } from "next-intl/server";
+import { PROJECTS, SEO_DEFAULTS, SITE_URL } from "../../../constants";
+import { JsonLd } from "../../../components/ui/json-ld";
+import { generateProjectJsonLd } from "../../../constants/json-ld";
 import { ProjectDetail } from "./project-detail";
+import { routing } from "../../../../i18n/routing";
 
 interface PageProps {
-  params: Promise<{ id: string }>;
+  params: Promise<{ locale: string; id: string }>;
 }
 
 export function generateStaticParams() {
-  return PROJECTS.map((project) => ({ id: project.id }));
+  return routing.locales.flatMap((locale) =>
+    PROJECTS.map((project) => ({ locale, id: project.id }))
+  );
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { id } = await params;
+  const { id, locale } = await params;
   const project = PROJECTS.find((p) => p.id === id);
 
   if (!project) return {};
 
-  const title = `${project.title} | Projects`;
-  const description = project.description;
+  const t = await getTranslations({ locale, namespace: "projects" });
+
+  const title = `${t(`${project.i18nKey}.title`)} | Projects`;
+  const description = t(`${project.i18nKey}.description`);
 
   return {
     title,
@@ -30,7 +36,7 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
-      url: `${SITE_URL}/projects/${project.id}`,
+      url: `${SITE_URL}/${locale}/projects/${project.id}`,
       siteName: SEO_DEFAULTS.siteName,
       type: "article",
       images: [
@@ -38,7 +44,7 @@ export async function generateMetadata({
           url: SEO_DEFAULTS.ogImage,
           width: 1200,
           height: 630,
-          alt: `${project.title} - ${SEO_DEFAULTS.author}`,
+          alt: `${t(`${project.i18nKey}.title`)} - ${SEO_DEFAULTS.author}`,
         },
       ],
     },
@@ -49,7 +55,7 @@ export async function generateMetadata({
       images: [SEO_DEFAULTS.ogImage],
     },
     alternates: {
-      canonical: `${SITE_URL}/projects/${project.id}`,
+      canonical: `${SITE_URL}/${locale}/projects/${project.id}`,
     },
   };
 }

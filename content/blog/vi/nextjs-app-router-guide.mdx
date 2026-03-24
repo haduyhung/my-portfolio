@@ -1,0 +1,152 @@
+---
+title: "Tại Sao Next.js App Router Là Tương Lai Của Phát Triển React"
+description: "Hướng dẫn thực tế về Next.js App Router — Server Components, file-based routing, data fetching patterns, và tại sao nó thay đổi cách chúng ta xây dựng ứng dụng React."
+date: "2026-03-22"
+tags: ["Next.js", "React", "App Router", "Server Components"]
+published: true
+---
+
+## Sự Chuyển Đổi Từ Pages Sang App Router
+
+Khi Next.js giới thiệu App Router trong phiên bản 13, đó không chỉ là hệ thống routing mới — đó là sự suy nghĩ lại hoàn toàn về cách xây dựng ứng dụng React. Sau khi làm việc với cả Pages Router và App Router trong nhiều dự án production, tôi tin rằng App Router là tương lai.
+
+## Server Components Mặc Định
+
+Sự thay đổi paradigm lớn nhất là mọi component đều là **Server Component** mặc định:
+
+- Components render trên server, chỉ gửi HTML xuống client
+- Không có JavaScript nào được gửi cho components không cần tương tác
+- Truy cập trực tiếp databases, file systems, và server-only APIs
+
+```tsx
+// Component này gửi KHÔNG JS nào xuống trình duyệt
+async function ProductList() {
+  const products = await db.product.findMany();
+
+  return (
+    <ul>
+      {products.map((p) => (
+        <li key={p.id}>{p.name} - ${p.price}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+Chỉ thêm `"use client"` khi bạn thực sự cần browser APIs, event handlers, hoặc hooks như `useState`.
+
+## File-Based Routing Trực Quan
+
+Các quy ước file của App Router rất trực quan và mạnh mẽ:
+
+```
+app/
+  layout.tsx        → Root layout (bọc tất cả)
+  page.tsx          → Trang chủ (/)
+  loading.tsx       → Loading UI (tự động Suspense)
+  error.tsx         → Error boundary
+  not-found.tsx     → Trang 404
+  blog/
+    page.tsx        → /blog
+    [slug]/
+      page.tsx      → /blog/:slug
+```
+
+Mỗi route có thể có `layout.tsx` riêng (persist qua navigations), `loading.tsx` cho loading states tự động, và `error.tsx` cho error boundaries — tất cả không cần viết một dòng cấu hình nào.
+
+## Data Fetching: Đơn Giản Và Mạnh Mẽ
+
+Không còn những ngày `getServerSideProps` và `getStaticProps`. Trong App Router, bạn chỉ cần dùng `async/await`:
+
+```tsx
+// Server Component - fetch data tại request time
+async function BlogPost({ params }) {
+  const { slug } = await params;
+  const post = await getPost(slug);
+
+  return (
+    <article>
+      <h1>{post.title}</h1>
+      <p>{post.content}</p>
+    </article>
+  );
+}
+```
+
+### Static vs Dynamic
+
+Next.js tự động xác định trang nên static hay dynamic:
+
+- **Static (SSG)**: Trang không có dynamic data được pre-render lúc build time
+- **Dynamic (SSR)**: Trang dùng `cookies()`, `headers()`, hoặc `searchParams` render lúc request time
+- **ISR**: Dùng `revalidate` để rebuild trang static theo lịch
+
+```tsx
+// Static mặc định
+async function About() {
+  return <h1>Giới Thiệu</h1>;
+}
+
+// Dynamic vì searchParams
+async function Search({ searchParams }) {
+  const { q } = await searchParams;
+  const results = await search(q);
+  return <Results data={results} />;
+}
+```
+
+## Parallel Routes Và Intercepting Routes
+
+Hai tính năng mở khoá các UI pattern phức tạp:
+
+### Parallel Routes
+
+Render nhiều trang đồng thời trong cùng layout:
+
+```tsx
+export default function Layout({ children, modal, sidebar }) {
+  return (
+    <div>
+      <aside>{sidebar}</aside>
+      <main>{children}</main>
+      {modal}
+    </div>
+  );
+}
+```
+
+### Intercepting Routes
+
+Hiển thị modal khi navigate từ trong app, nhưng full page khi truy cập trực tiếp. Đây là cách mà modal kiểu Instagram hoạt động — modal khi click từ feed, full page khi share URL.
+
+## Middleware Và Edge Runtime
+
+Chạy code trước khi request hoàn thành, tại edge, gần người dùng:
+
+```tsx
+// middleware.ts
+export function middleware(request) {
+  if (!isAuthenticated(request)) {
+    return NextResponse.redirect("/login");
+  }
+}
+```
+
+Kết hợp với Edge Runtime, middleware chạy trong vài mili giây trên toàn thế giới.
+
+## Kết Quả Hiệu Năng Thực Tế
+
+Trong các dự án thực tế, chuyển sang App Router mang lại:
+
+- **Giảm 40-60%** bundle JavaScript phía client
+- **TTFB nhanh hơn** nhờ streaming SSR
+- **Core Web Vitals tốt hơn** — đặc biệt LCP và INP
+- **Code đơn giản hơn** — ít abstractions, ít state management
+
+## Lời Khuyên
+
+Bắt đầu với Server Components ở mọi nơi. Chỉ thêm `"use client"` khi compiler yêu cầu. Bạn sẽ ngạc nhiên vì thực sự cần rất ít JavaScript phía client.
+
+App Router không chỉ là cách routing tốt hơn — đó là cách xây dựng ứng dụng React tốt hơn. Sự kết hợp của Server Components, streaming, và file-based conventions tạo ra trải nghiệm developer vừa đơn giản vừa mạnh mẽ hơn.
+
+Tương lai phát triển React chạy trên server trước.

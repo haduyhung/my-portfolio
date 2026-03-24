@@ -2,16 +2,19 @@
 
 import { motion } from "framer-motion";
 import { ArrowDown, Mail, GitBranch, Link as LinkIcon } from "lucide-react";
-import { PERSONAL_INFO, HERO_CONTENT } from "../../constants";
+import { useTranslations } from "next-intl";
+import { PERSONAL_INFO } from "../../constants";
 
 export function Hero() {
+  const t = useTranslations("hero");
+
   return (
     <section
       id="home"
       className="relative flex min-h-screen items-center justify-center overflow-hidden px-6"
     >
       {/* Background decoration */}
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <div className="absolute top-1/4 left-1/4 h-72 w-72 rounded-full bg-accent/10 blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 h-72 w-72 rounded-full bg-accent-secondary/10 blur-3xl" />
       </div>
@@ -23,7 +26,7 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="mb-4 text-lg font-medium text-muted-foreground"
         >
-          {HERO_CONTENT.greeting}
+          {t("greeting")}
         </motion.p>
 
         <motion.h1
@@ -50,7 +53,7 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground"
         >
-          {HERO_CONTENT.description}
+          {t("description")}
         </motion.p>
 
         <motion.div
@@ -63,13 +66,13 @@ export function Hero() {
             href="#projects"
             className="rounded-full bg-gradient-to-r from-accent to-accent-secondary px-8 py-3 text-sm font-semibold text-white shadow-lg transition-transform hover:scale-105"
           >
-            {HERO_CONTENT.cta.primary}
+            {t("viewWork")}
           </a>
           <a
             href="#contact"
             className="rounded-full border border-border px-8 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-secondary"
           >
-            {HERO_CONTENT.cta.secondary}
+            {t("getInTouch")}
           </a>
         </motion.div>
 
@@ -114,6 +117,7 @@ export function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 0.5 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        aria-hidden="true"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}

@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { SEO_DEFAULTS } from "./constants";
+import { SEO_DEFAULTS } from "../constants";
 
 export const runtime = "edge";
 

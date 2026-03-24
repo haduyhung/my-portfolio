@@ -2,37 +2,41 @@
 
 import { motion } from "framer-motion";
 import { MapPin, Calendar, Briefcase, GraduationCap } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { SectionHeading } from "../ui/section-heading";
-import { PERSONAL_INFO, EDUCATION } from "../../constants";
-
-const highlights = [
-  {
-    icon: Briefcase,
-    label: "Experience",
-    value: "3.5+ Years",
-  },
-  {
-    icon: MapPin,
-    label: "Location",
-    value: PERSONAL_INFO.location,
-  },
-  {
-    icon: GraduationCap,
-    label: "Education",
-    value: EDUCATION[0].school,
-  },
-  {
-    icon: Calendar,
-    label: "Born",
-    value: PERSONAL_INFO.dateOfBirth,
-  },
-];
+import { PERSONAL_INFO, EDUCATION_PERIOD } from "../../constants";
 
 export function About() {
+  const t = useTranslations("about");
+  const tEdu = useTranslations("education");
+
+  const highlights = [
+    {
+      icon: Briefcase,
+      label: t("highlights.experience"),
+      value: t("highlights.experienceValue"),
+    },
+    {
+      icon: MapPin,
+      label: t("highlights.location"),
+      value: PERSONAL_INFO.location,
+    },
+    {
+      icon: GraduationCap,
+      label: t("highlights.education"),
+      value: tEdu("school"),
+    },
+    {
+      icon: Calendar,
+      label: t("highlights.born"),
+      value: PERSONAL_INFO.dateOfBirth,
+    },
+  ];
+
   return (
     <section id="about" className="px-6 py-24">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading title="About Me" subtitle="Get to know me better" />
+        <SectionHeading title={t("title")} subtitle={t("subtitle")} />
 
         <div className="grid gap-12 lg:grid-cols-2">
           {/* Profile text */}
@@ -43,23 +47,26 @@ export function About() {
             viewport={{ once: true }}
           >
             <p className="mb-6 text-lg leading-relaxed text-muted-foreground">
-              {PERSONAL_INFO.profileSummary}
+              {t("summary")}
             </p>
             <p className="text-lg leading-relaxed text-muted-foreground">
-              I specialize in building modern web applications with{" "}
-              <span className="font-semibold text-foreground">React</span>,{" "}
-              <span className="font-semibold text-foreground">Next.js</span>,
-              and{" "}
-              <span className="font-semibold text-foreground">TypeScript</span>,
-              while also having hands-on experience with mobile development
-              using{" "}
-              <span className="font-semibold text-foreground">
-                React Native
-              </span>{" "}
-              and{" "}
-              <span className="font-semibold text-foreground">Kotlin</span>. I
-              am passionate about leveraging AI-assisted tools to boost
-              productivity and deliver high-quality code.
+              {t.rich("specialization", {
+                react: (chunks) => (
+                  <span className="font-semibold text-foreground">{chunks}</span>
+                ),
+                nextjs: (chunks) => (
+                  <span className="font-semibold text-foreground">{chunks}</span>
+                ),
+                typescript: (chunks) => (
+                  <span className="font-semibold text-foreground">{chunks}</span>
+                ),
+                reactNative: (chunks) => (
+                  <span className="font-semibold text-foreground">{chunks}</span>
+                ),
+                kotlin: (chunks) => (
+                  <span className="font-semibold text-foreground">{chunks}</span>
+                ),
+              })}
             </p>
           </motion.div>
 
@@ -80,11 +87,13 @@ export function About() {
                 viewport={{ once: true }}
                 className="rounded-2xl border border-border bg-card p-5 transition-colors hover:border-accent/50"
               >
-                <item.icon size={24} className="mb-3 text-accent" />
-                <p className="text-sm text-muted-foreground">{item.label}</p>
-                <p className="mt-1 font-semibold text-card-foreground">
-                  {item.value}
-                </p>
+                <item.icon size={24} className="mb-3 text-accent" aria-hidden="true" />
+                <dl>
+                  <dt className="text-sm text-muted-foreground">{item.label}</dt>
+                  <dd className="mt-1 font-semibold text-card-foreground">
+                    {item.value}
+                  </dd>
+                </dl>
               </motion.div>
             ))}
           </motion.div>

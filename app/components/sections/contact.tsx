@@ -12,17 +12,21 @@ import {
   Gamepad2,
   Sparkles,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { SectionHeading } from "../ui/section-heading";
-import { PERSONAL_INFO, EDUCATION, INTERESTS } from "../../constants";
+import { PERSONAL_INFO, EDUCATION_PERIOD } from "../../constants";
 
 export function Contact() {
+  const t = useTranslations("contact");
+  const tEdu = useTranslations("education");
+  const tInterests = useTranslations("interests");
+
+  const interests = tInterests.raw("items") as string[];
+
   return (
     <section id="contact" className="px-6 py-24">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading
-          title="Get In Touch"
-          subtitle="Let's work together on something great"
-        />
+        <SectionHeading title={t("title")} subtitle={t("subtitle")} />
 
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Contact info */}
@@ -33,22 +37,19 @@ export function Contact() {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <p className="text-lg text-muted-foreground">
-              I&apos;m always open to discussing new projects, creative ideas,
-              or opportunities to be part of your vision. Feel free to reach out!
-            </p>
+            <p className="text-lg text-muted-foreground">{t("intro")}</p>
 
-            <div className="space-y-4">
+            <dl className="space-y-4">
               <a
                 href={`mailto:${PERSONAL_INFO.email}`}
                 className="flex items-center gap-4 rounded-xl border border-border p-4 transition-colors hover:border-accent/50 hover:bg-card"
               >
                 <div className="rounded-full bg-accent/10 p-3">
-                  <Mail size={20} className="text-accent" />
+                  <Mail size={20} className="text-accent" aria-hidden="true" />
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Email</p>
-                  <p className="font-medium">{PERSONAL_INFO.email}</p>
+                  <dt className="text-sm text-muted-foreground">{t("email")}</dt>
+                  <dd className="font-medium">{PERSONAL_INFO.email}</dd>
                 </div>
               </a>
 
@@ -57,24 +58,24 @@ export function Contact() {
                 className="flex items-center gap-4 rounded-xl border border-border p-4 transition-colors hover:border-accent/50 hover:bg-card"
               >
                 <div className="rounded-full bg-accent/10 p-3">
-                  <Phone size={20} className="text-accent" />
+                  <Phone size={20} className="text-accent" aria-hidden="true" />
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Phone</p>
-                  <p className="font-medium">{PERSONAL_INFO.phone}</p>
+                  <dt className="text-sm text-muted-foreground">{t("phone")}</dt>
+                  <dd className="font-medium">{PERSONAL_INFO.phone}</dd>
                 </div>
               </a>
 
               <div className="flex items-center gap-4 rounded-xl border border-border p-4">
                 <div className="rounded-full bg-accent/10 p-3">
-                  <MapPin size={20} className="text-accent" />
+                  <MapPin size={20} className="text-accent" aria-hidden="true" />
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Location</p>
-                  <p className="font-medium">{PERSONAL_INFO.location}</p>
+                  <dt className="text-sm text-muted-foreground">{t("location")}</dt>
+                  <dd className="font-medium">{PERSONAL_INFO.location}</dd>
                 </div>
               </div>
-            </div>
+            </dl>
 
             {/* Social links */}
             <div className="flex gap-3 pt-2">
@@ -115,32 +116,30 @@ export function Contact() {
             className="space-y-6"
           >
             {/* Education card */}
-            <div className="rounded-2xl border border-border bg-card p-6">
+            <section className="rounded-2xl border border-border bg-card p-6">
               <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-card-foreground">
                 <GraduationCap size={22} className="text-accent" />
-                Education
+                {t("education")}
               </h3>
-              {EDUCATION.map((edu) => (
-                <div key={edu.school}>
-                  <p className="font-semibold text-card-foreground">
-                    {edu.school}
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    {edu.major} &middot; {edu.status}
-                  </p>
-                  <p className="text-sm text-muted-foreground">{edu.period}</p>
-                </div>
-              ))}
-            </div>
+              <div>
+                <p className="font-semibold text-card-foreground">
+                  {tEdu("school")}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  {tEdu("major")} &middot; {tEdu("status")}
+                </p>
+                <p className="text-sm text-muted-foreground">{EDUCATION_PERIOD}</p>
+              </div>
+            </section>
 
             {/* Interests card */}
-            <div className="rounded-2xl border border-border bg-card p-6">
+            <section className="rounded-2xl border border-border bg-card p-6">
               <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-card-foreground">
                 <Sparkles size={22} className="text-accent-secondary" />
-                Interests
+                {t("interests")}
               </h3>
               <ul className="space-y-3">
-                {INTERESTS.map((interest, i) => (
+                {interests.map((interest: string, i: number) => (
                   <li
                     key={i}
                     className="flex items-start gap-3 text-muted-foreground"
@@ -153,17 +152,15 @@ export function Contact() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </section>
 
             {/* English */}
-            <div className="rounded-2xl border border-border bg-card p-6">
+            <section className="rounded-2xl border border-border bg-card p-6">
               <h3 className="mb-2 text-lg font-semibold text-card-foreground">
-                English
+                {t("english")}
               </h3>
-              <p className="text-muted-foreground">
-                Able to read, understand, and write documents
-              </p>
-            </div>
+              <p className="text-muted-foreground">{t("englishLevel")}</p>
+            </section>
           </motion.div>
         </div>
       </div>
