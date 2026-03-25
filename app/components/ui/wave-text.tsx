@@ -1,13 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import { motion, useAnimation } from "framer-motion";
 
 interface WaveTextProps {
   text: string;
   className?: string;
-  interval?: number; // ms between waves
-  waveWidth?: number; // how many chars lift at once
+  interval?: number;
+  waveWidth?: number;
 }
 
 export function WaveText({
@@ -17,7 +16,7 @@ export function WaveText({
   waveWidth = 3,
 }: WaveTextProps) {
   const [activeWave, setActiveWave] = useState<number>(-1);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
+  const timeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const runWave = useCallback(() => {
     let pos = 0;
@@ -50,26 +49,41 @@ export function WaveText({
     };
   }, [interval, runWave]);
 
+  const words = text.split(" ");
+  let charIndex = 0;
+
   return (
-    <span className={className}>
-      {text.split("").map((char, i) => {
-        const distFromWave = Math.abs(i - activeWave);
-        const isLifted = activeWave >= 0 && distFromWave < waveWidth;
-        const lift = isLifted
-          ? Math.cos((distFromWave / waveWidth) * (Math.PI / 2)) * -3
-          : 0;
+    <span className={className} style={{ wordBreak: "break-word" }}>
+      {words.map((word, wi) => {
+        const startIndex = charIndex;
+        charIndex += word.length + 1;
 
         return (
-          <span
-            key={i}
-            style={{
-              display: "inline-block",
-              transform: `translateY(${lift}px)`,
-              transition: "transform 0.25s ease-out",
-              whiteSpace: char === " " ? "pre" : undefined,
-            }}
-          >
-            {char}
+          <span key={wi}>
+            <span style={{ whiteSpace: "nowrap" }}>
+              {word.split("").map((char, ci) => {
+                const gi = startIndex + ci;
+                const dist = Math.abs(gi - activeWave);
+                const isLifted = activeWave >= 0 && dist < waveWidth;
+                const lift = isLifted
+                  ? Math.cos((dist / waveWidth) * (Math.PI / 2)) * -3
+                  : 0;
+
+                return (
+                  <span
+                    key={ci}
+                    style={{
+                      display: "inline-block",
+                      transform: `translateY(${lift}px)`,
+                      transition: "transform 0.25s ease-out",
+                    }}
+                  >
+                    {char}
+                  </span>
+                );
+              })}
+            </span>
+            {wi < words.length - 1 && " "}
           </span>
         );
       })}
