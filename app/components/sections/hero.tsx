@@ -5,9 +5,13 @@ import { ArrowDown, Mail, GitBranch, Link as LinkIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { PERSONAL_INFO } from "../../constants";
 import { HeroButton } from "../ui/hero-button";
+import { WaveText } from "../ui/wave-text";
+import { useLocale } from "next-intl";
 
 export function Hero() {
   const t = useTranslations("hero");
+  const locale = useLocale();
+  const name = locale === "vi" ? "Hà Duy Hưng" : "Ha Duy Hung";
 
   return (
     <section
@@ -36,7 +40,7 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="mb-4 text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl"
         >
-          <span className="gradient-text">{PERSONAL_INFO.name}</span>
+          <span className="gradient-text">{name}</span>
         </motion.h1>
 
         <motion.p
@@ -54,7 +58,7 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground"
         >
-          {t("description")}
+          <WaveText text={t("description")} />
         </motion.p>
 
         <motion.div
@@ -82,31 +86,37 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.7 }}
           className="flex items-center justify-center gap-4"
         >
-          <a
+          <motion.a
             href={PERSONAL_INFO.socialLinks.github}
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-full p-3 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
             aria-label="GitHub"
+            animate={{ x: [0, -3, 2, 0], y: [0, -4, 1, 0] }}
+            transition={{ repeat: Infinity, duration: 4.2, ease: "easeInOut" }}
           >
             <GitBranch size={22} />
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href={PERSONAL_INFO.socialLinks.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-full p-3 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
             aria-label="LinkedIn"
+            animate={{ x: [0, 3, -1, 0], y: [0, 3, -4, 0] }}
+            transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }}
           >
             <LinkIcon size={22} />
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href={PERSONAL_INFO.socialLinks.email}
             className="rounded-full p-3 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
             aria-label="Email"
+            animate={{ x: [0, 2, -3, 0], y: [0, -3, 2, 0] }}
+            transition={{ repeat: Infinity, duration: 3.8, ease: "easeInOut" }}
           >
             <Mail size={22} />
-          </a>
+          </motion.a>
         </motion.div>
       </div>
 
