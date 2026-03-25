@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -32,8 +33,15 @@ export function Header() {
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="#home" className="text-xl font-bold gradient-text">
-          HDH
+        <a href="#home">
+          <Image
+            src="/logo.png"
+            alt="HDH Logo"
+            width={40}
+            height={40}
+            className="object-contain"
+            priority
+          />
         </a>
 
         {/* Desktop nav */}
