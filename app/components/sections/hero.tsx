@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowDown, Mail, GitBranch, Link as LinkIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { PERSONAL_INFO } from "../../constants";
+import { HeroButton } from "../ui/hero-button";
 
 export function Hero() {
   const t = useTranslations("hero");
@@ -62,18 +63,16 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="mb-10 flex flex-wrap items-center justify-center gap-4"
         >
-          <a
+          <HeroButton
             href="#projects"
-            className="rounded-full bg-gradient-to-r from-accent to-accent-secondary px-8 py-3 text-sm font-semibold text-white shadow-lg transition-transform hover:scale-105"
-          >
-            {t("viewWork")}
-          </a>
-          <a
+            text={t("viewWork")}
+          />
+          <HeroButton
             href="#contact"
-            className="rounded-full border border-border px-8 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-secondary"
-          >
-            {t("getInTouch")}
-          </a>
+            text={t("getInTouch")}
+            showLogo={false}
+            variant="outline"
+          />
         </motion.div>
 
         {/* Social links */}
