@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { PERSONAL_INFO } from "../../constants";
 import { HeroButton } from "../ui/hero-button";
 import { WaveText } from "../ui/wave-text";
+import { FloatingIcons } from "../ui/floating-icons";
 import { useLocale } from "next-intl";
 
 export function Hero() {
@@ -23,6 +24,8 @@ export function Hero() {
         <div className="absolute top-1/4 left-1/4 h-72 w-72 rounded-full bg-accent/10 blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 h-72 w-72 rounded-full bg-accent-secondary/10 blur-3xl" />
       </div>
+
+      <FloatingIcons />
 
       <div className="relative z-10 mx-auto max-w-4xl text-center">
         <motion.p
