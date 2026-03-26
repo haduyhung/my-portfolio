@@ -49,44 +49,57 @@ export function WaveText({
     };
   }, [interval, runWave]);
 
-  const words = text.split(" ");
-  let charIndex = 0;
+  const hasSpaces = text.includes(" ");
 
+  const renderChar = (char: string, globalIndex: number) => {
+    const dist = Math.abs(globalIndex - activeWave);
+    const isLifted = activeWave >= 0 && dist < waveWidth;
+    const lift = isLifted
+      ? Math.cos((dist / waveWidth) * (Math.PI / 2)) * -3
+      : 0;
+
+    return (
+      <span
+        key={globalIndex}
+        style={{
+          display: "inline-block",
+          transform: `translateY(${lift}px)`,
+          transition: "transform 0.25s ease-out",
+        }}
+      >
+        {char}
+      </span>
+    );
+  };
+
+  // Languages with spaces: group by word to prevent mid-word breaks
+  if (hasSpaces) {
+    const words = text.split(" ");
+    let charIndex = 0;
+
+    return (
+      <span className={className}>
+        {words.map((word, wi) => {
+          const startIndex = charIndex;
+          charIndex += word.length + 1;
+
+          return (
+            <span key={wi}>
+              <span style={{ whiteSpace: "nowrap" }}>
+                {word.split("").map((char, ci) => renderChar(char, startIndex + ci))}
+              </span>
+              {wi < words.length - 1 && " "}
+            </span>
+          );
+        })}
+      </span>
+    );
+  }
+
+  // Languages without spaces (Japanese, Chinese, etc.): render char by char
   return (
     <span className={className} style={{ wordBreak: "break-word" }}>
-      {words.map((word, wi) => {
-        const startIndex = charIndex;
-        charIndex += word.length + 1;
-
-        return (
-          <span key={wi}>
-            <span style={{ whiteSpace: "nowrap" }}>
-              {word.split("").map((char, ci) => {
-                const gi = startIndex + ci;
-                const dist = Math.abs(gi - activeWave);
-                const isLifted = activeWave >= 0 && dist < waveWidth;
-                const lift = isLifted
-                  ? Math.cos((dist / waveWidth) * (Math.PI / 2)) * -3
-                  : 0;
-
-                return (
-                  <span
-                    key={ci}
-                    style={{
-                      display: "inline-block",
-                      transform: `translateY(${lift}px)`,
-                      transition: "transform 0.25s ease-out",
-                    }}
-                  >
-                    {char}
-                  </span>
-                );
-              })}
-            </span>
-            {wi < words.length - 1 && " "}
-          </span>
-        );
-      })}
+      {text.split("").map((char, i) => renderChar(char, i))}
     </span>
   );
 }
