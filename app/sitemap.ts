@@ -7,11 +7,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const locales = routing.locales;
   const entries: MetadataRoute.Sitemap = [];
 
+  // Root URL
+  entries.push({
+    url: SITE_URL,
+    changeFrequency: "monthly",
+    priority: 1,
+  });
+
   for (const locale of locales) {
-    // Homepage
+    // Homepage per locale
     entries.push({
       url: `${SITE_URL}/${locale}`,
-      lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
     });
@@ -20,7 +26,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const project of PROJECTS) {
       entries.push({
         url: `${SITE_URL}/${locale}/projects/${project.id}`,
-        lastModified: new Date(),
         changeFrequency: "monthly",
         priority: 0.7,
       });
@@ -29,7 +34,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Blog listing
     entries.push({
       url: `${SITE_URL}/${locale}/blog`,
-      lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.8,
     });
@@ -39,7 +43,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const slug of slugs) {
       entries.push({
         url: `${SITE_URL}/${locale}/blog/${slug}`,
-        lastModified: new Date(),
         changeFrequency: "monthly",
         priority: 0.6,
       });

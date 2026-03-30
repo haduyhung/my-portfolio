@@ -2,7 +2,7 @@
  * Base URL of the deployed site.
  * Update this when you have a production domain.
  */
-export const SITE_URL = "https://haduyhung.dev";
+export const SITE_URL = "https://haduyhung.site";
 
 export const SEO_DEFAULTS = {
   siteName: "Ha Duy Hung | Portfolio",
@@ -26,6 +26,6 @@ export const SEO_DEFAULTS = {
   author: "Ha Duy Hung",
   locale: "en_US",
   /** Path to the OG image in /public */
-  ogImage: "/og-image.png",
+  ogImage: "/logo.png",
   twitterHandle: "@haduyhung",
 } as const;
