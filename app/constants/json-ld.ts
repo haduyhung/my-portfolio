@@ -17,7 +17,7 @@ export const PERSON_JSONLD = {
   },
   sameAs: [
     PERSONAL_INFO.socialLinks.github,
-    PERSONAL_INFO.socialLinks.linkedin,
+    PERSONAL_INFO.socialLinks.facebook,
   ],
   knowsAbout: [
     "React",

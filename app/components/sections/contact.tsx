@@ -89,7 +89,7 @@ export function Contact() {
                 <GitBranch size={20} />
               </a>
               <a
-                href={PERSONAL_INFO.socialLinks.linkedin}
+                href={PERSONAL_INFO.socialLinks.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-full border border-border p-3 transition-colors hover:border-accent/50 hover:bg-card hover:text-accent"

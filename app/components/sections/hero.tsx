@@ -101,7 +101,7 @@ export function Hero() {
             <GitBranch size={22} />
           </motion.a>
           <motion.a
-            href={PERSONAL_INFO.socialLinks.linkedin}
+            href={PERSONAL_INFO.socialLinks.facebook}
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-full p-3 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"

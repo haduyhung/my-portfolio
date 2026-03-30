@@ -7,7 +7,7 @@ export const PERSONAL_INFO = {
   dateOfBirth: "05-10-2000",
   socialLinks: {
     github: "https://github.com/haduyhung",
-    linkedin: "https://www.facebook.com/fattestmanalive",
+    facebook: "https://www.facebook.com/fattestmanalive",
     email: "mailto:haduyhungdz123@gmail.com",
   },
 } as const;
