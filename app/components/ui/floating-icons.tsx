@@ -74,7 +74,7 @@ function FloatingIcon({
 
   return (
     <motion.div
-      className="absolute hidden md:flex cursor-pointer select-none"
+      className="absolute flex cursor-pointer select-none"
       style={{ left: x, top: y }}
       initial={{ opacity: 0, scale: 0 }}
       animate={{
