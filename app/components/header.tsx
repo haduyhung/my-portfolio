@@ -16,9 +16,11 @@ export function Header() {
   const t = useTranslations("nav");
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const handler = (e: Event) => {
+      setIsScrolled((e as CustomEvent<{ index: number }>).detail.index > 0);
+    };
+    window.addEventListener("fp-section-change", handler);
+    return () => window.removeEventListener("fp-section-change", handler);
   }, []);
 
   return (
