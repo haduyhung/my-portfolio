@@ -6,7 +6,8 @@
     "experience": "経験",
     "projects": "プロジェクト",
     "contact": "お問い合わせ",
-    "blog": "ブログ"
+    "blog": "ブログ",
+    "japanese": "日本語練習"
   },
   "hero": {
     "greeting": "こんにちは、",
@@ -223,6 +224,23 @@
     "title": "ページが見つかりません",
     "description": "お探しのページは存在しないか、移動されました。",
     "backHome": "ホームに戻る"
+  },
+  "japanese": {
+    "result": "結果",
+    "perfect": "完璧！全部覚えました！",
+    "good": "よくできました！もう少し頑張りましょう。",
+    "keepGoing": "もっと練習しましょう、できます！",
+    "restart": "もう一度",
+    "back": "戻る",
+    "wrongCount": "不正解 — {count}問",
+    "correctCount": "正解 — {count}問",
+    "placeholder": "ローマ字を入力...",
+    "confirm": "確認",
+    "score": "スコア：",
+    "exit": "終了",
+    "answer": "答え：",
+    "time": "タイム：",
+    "maxCombo": "最高コンボ："
   },
   "blog": {
     "title": "ブログ",
