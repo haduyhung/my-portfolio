@@ -1,10 +1,5 @@
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
-
-const geistSans = GeistSans;
-const geistMono = GeistMono;
 
 export default function RootLayout({
   children,
@@ -13,10 +8,19 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      className={`${geistSans.className} ${geistMono.className} antialiased`}
+      className="antialiased"
       suppressHydrationWarning
       data-scroll-behavior="smooth"
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `
+          try {
+            var t = localStorage.getItem('theme');
+            var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (t === 'dark' || (!t && d)) document.documentElement.classList.add('dark');
+          } catch(e) {}
+        ` }} />
+      </head>
       <body className="min-h-screen bg-background text-foreground">
         {children}
         <Analytics />

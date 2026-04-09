@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { Link } from "../../i18n/navigation";
+import { Link, useRouter } from "../../i18n/navigation";
 import { NAV_LINKS } from "../constants";
 import { ThemeToggle } from "./ui/theme-toggle";
 import { LanguageSwitcher } from "./ui/language-switcher";
@@ -13,7 +13,9 @@ import { LanguageSwitcher } from "./ui/language-switcher";
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isJpAuthed, setIsJpAuthed] = useState(false);
   const t = useTranslations("nav");
+  const router = useRouter();
 
   useEffect(() => {
     const handler = (e: Event) => {
@@ -21,6 +23,10 @@ export function Header() {
     };
     window.addEventListener("fp-section-change", handler);
     return () => window.removeEventListener("fp-section-change", handler);
+  }, []);
+
+  useEffect(() => {
+    setIsJpAuthed(sessionStorage.getItem("jp_auth") === "1");
   }, []);
 
   return (
@@ -63,6 +69,14 @@ export function Header() {
           >
             {t("blog")}
           </Link>
+          {isJpAuthed && (
+            <button
+              onClick={() => router.push("/japanese" as any)}
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {t("japanese")}
+            </button>
+          )}
           <LanguageSwitcher />
           <ThemeToggle />
         </div>
@@ -109,6 +123,14 @@ export function Header() {
               >
                 {t("blog")}
               </Link>
+              {isJpAuthed && (
+                <button
+                  onClick={() => { setIsMobileMenuOpen(false); router.push("/japanese" as any); }}
+                  className="rounded-lg px-4 py-2 text-left text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                >
+                  {t("japanese")}
+                </button>
+              )}
             </div>
           </motion.div>
         )}

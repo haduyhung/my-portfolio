@@ -6,7 +6,8 @@
     "experience": "Kinh nghiệm",
     "projects": "Dự án",
     "contact": "Liên hệ",
-    "blog": "Blog"
+    "blog": "Blog",
+    "japanese": "Ôn Tiếng Nhật"
   },
   "hero": {
     "greeting": "Xin chào, tôi là",
@@ -223,6 +224,23 @@
     "title": "Không Tìm Thấy Trang",
     "description": "Trang bạn đang tìm kiếm không tồn tại hoặc đã được di chuyển.",
     "backHome": "Về Trang Chủ"
+  },
+  "japanese": {
+    "result": "Kết quả",
+    "perfect": "Hoàn hảo! Bạn nhớ hết rồi!",
+    "good": "Tốt lắm! Cố thêm một chút nữa nhé.",
+    "keepGoing": "Luyện thêm nhé, bạn sẽ làm được!",
+    "restart": "Làm lại",
+    "back": "Quay lại",
+    "wrongCount": "Sai — {count} câu",
+    "correctCount": "Đúng — {count} câu",
+    "placeholder": "Nhập romaji...",
+    "confirm": "Xác nhận",
+    "score": "Điểm:",
+    "exit": "Thoát",
+    "answer": "Đáp án:",
+    "time": "Thời gian:",
+    "maxCombo": "Combo cao nhất:"
   },
   "blog": {
     "title": "Blog",
