@@ -240,7 +240,38 @@
     "exit": "Thoát",
     "answer": "Đáp án:",
     "time": "Thời gian:",
-    "maxCombo": "Combo cao nhất:"
+    "maxCombo": "Combo cao nhất:",
+    "minna": {
+      "title": "Minna no Nihongo",
+      "subtitle": "Từ vựng từ giáo trình Minna no Nihongo",
+      "book1": "Quyển 1",
+      "book2": "Quyển 2",
+      "lesson": "Bài",
+      "wordCount": "{count} từ",
+      "studyLanguage": "Ngôn ngữ học",
+      "chooseExercise": "Chọn dạng bài tập",
+      "wordList": "Danh sách từ",
+      "exercises": {
+        "flashcard": "Flashcard",
+        "flashcardDesc": "Lật thẻ ôn từ vựng",
+        "meaningQuiz": "Quiz nghĩa",
+        "meaningQuizDesc": "Chọn nghĩa đúng của từ",
+        "readingQuiz": "Quiz đọc",
+        "readingQuizDesc": "Chọn cách đọc đúng (kana)",
+        "typingQuiz": "Quiz gõ",
+        "typingQuizDesc": "Gõ romaji từ nghĩa của từ",
+        "matching": "Nối từ",
+        "matchingDesc": "Nối từ với nghĩa tương ứng"
+      },
+      "flip": "Lật thẻ",
+      "knew": "Biết rồi",
+      "didntKnow": "Chưa biết",
+      "match": "Đã nối: {count}/{total}",
+      "round": "Vòng {current}/{total}",
+      "notEnoughKanji": "Bài này không đủ từ có Kanji cho bài tập này",
+      "backToLesson": "Về bài học",
+      "backToLessons": "Về danh sách bài"
+    }
   },
   "blog": {
     "title": "Blog",

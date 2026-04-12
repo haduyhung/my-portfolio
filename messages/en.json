@@ -240,7 +240,38 @@
     "exit": "Exit",
     "answer": "Answer:",
     "time": "Time:",
-    "maxCombo": "Best combo:"
+    "maxCombo": "Best combo:",
+    "minna": {
+      "title": "Minna no Nihongo",
+      "subtitle": "Vocabulary from Minna no Nihongo textbook",
+      "book1": "Book 1",
+      "book2": "Book 2",
+      "lesson": "Lesson",
+      "wordCount": "{count} words",
+      "studyLanguage": "Study language",
+      "chooseExercise": "Choose exercise type",
+      "wordList": "Word list",
+      "exercises": {
+        "flashcard": "Flashcard",
+        "flashcardDesc": "Flip cards to review vocabulary",
+        "meaningQuiz": "Meaning Quiz",
+        "meaningQuizDesc": "Choose the correct meaning",
+        "readingQuiz": "Reading Quiz",
+        "readingQuizDesc": "Choose the correct reading (kana)",
+        "typingQuiz": "Typing Quiz",
+        "typingQuizDesc": "Type the romaji from the meaning",
+        "matching": "Matching",
+        "matchingDesc": "Match words with their meanings"
+      },
+      "flip": "Flip card",
+      "knew": "I knew it",
+      "didntKnow": "Didn't know",
+      "match": "Matched: {count}/{total}",
+      "round": "Round {current}/{total}",
+      "notEnoughKanji": "This lesson doesn't have enough kanji words for this exercise",
+      "backToLesson": "Back to lesson",
+      "backToLessons": "Back to lessons"
+    }
   },
   "blog": {
     "title": "Blog",
