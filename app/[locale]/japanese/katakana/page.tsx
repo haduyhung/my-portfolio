@@ -1,9 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { useRouter } from "../../../../i18n/navigation";
 import { KanaQuiz, type QuizMode } from "../../../components/japanese/kana-quiz";
+import { KanaChart } from "../../../components/japanese/kana-chart";
 import { KATAKANA } from "../../../constants/japanese";
+
+const MODES: { value: QuizMode; label: string; desc: string; icon: string }[] = [
+  { value: "kana", label: "Kana → Romaji", desc: "Nhìn ký tự, nhập cách đọc", icon: "ア" },
+  { value: "romaji", label: "Romaji → Kana", desc: "Nhìn romaji, chọn ký tự đúng", icon: "A" },
+];
 
 export default function KatakanaPage() {
   const router = useRouter();
@@ -16,60 +23,104 @@ export default function KatakanaPage() {
     }
   }, [router]);
 
-  if (!started) {
+  if (started) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-8 p-6">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold">Luyện Katakana</h1>
-          <p className="mt-1 text-muted-foreground">カタカナ · 46 ký tự</p>
-        </div>
-
-        <div className="flex flex-col gap-3 w-full max-w-xs">
-          <p className="text-sm text-center text-muted-foreground">Chọn chế độ</p>
-          <button
-            onClick={() => setMode("kana")}
-            className={`rounded-xl border px-6 py-4 text-left transition-all ${
-              mode === "kana"
-                ? "border-primary bg-primary/10"
-                : "border-border hover:border-primary/50"
-            }`}
-          >
-            <p className="font-medium">Kana → Romaji</p>
-            <p className="text-xs text-muted-foreground mt-0.5">Nhìn ký tự, nhập cách đọc</p>
-          </button>
-          <button
-            onClick={() => setMode("romaji")}
-            className={`rounded-xl border px-6 py-4 text-left transition-all ${
-              mode === "romaji"
-                ? "border-primary bg-primary/10"
-                : "border-border hover:border-primary/50"
-            }`}
-          >
-            <p className="font-medium">Romaji → Kana</p>
-            <p className="text-xs text-muted-foreground mt-0.5">Nhìn cách đọc, chọn ký tự đúng</p>
-          </button>
-
-          <button
-            onClick={() => setStarted(true)}
-            className="mt-2 w-full rounded-lg bg-primary py-3 text-sm font-medium text-primary-foreground hover:opacity-90 transition-opacity"
-          >
-            Bắt đầu
-          </button>
-          <button
-            onClick={() => router.push("/japanese" as any)}
-            className="text-xs text-center text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Quay lại
-          </button>
-        </div>
-      </div>
+      <KanaQuiz
+        key={mode}
+        kana={KATAKANA}
+        title={mode === "kana" ? "Katakana · Kana → Romaji" : "Katakana · Romaji → Kana"}
+        mode={mode}
+      />
     );
   }
 
-  const title =
-    mode === "kana"
-      ? "Katakana · Kana → Romaji"
-      : "Katakana · Romaji → Kana";
+  return (
+    <div className="flex min-h-[calc(100vh-3.5rem)] flex-col md:flex-row">
+      {/* Left: Chart */}
+      <div className="flex-1 p-6">
+        <KanaChart
+          embedded
+          title="Katakana"
+          subtitle="カタカナ · 71 ký tự"
+          pool={KATAKANA}
+        />
+      </div>
 
-  return <KanaQuiz key={mode} kana={KATAKANA} title={title} mode={mode} />;
+      {/* Right: Sticky quiz panel */}
+      <div className="w-full border-t border-border md:w-72 md:shrink-0 md:border-l md:border-t-0">
+        <div className="sticky top-14 p-4">
+          <motion.div
+            initial={{ opacity: 0, x: 16 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm"
+          >
+            {/* Panel header */}
+            <div className="border-b border-border bg-secondary/30 px-4 py-3">
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Luyện tập
+              </p>
+              <h2 className="mt-0.5 font-semibold">Katakana</h2>
+            </div>
+
+            {/* Mode options */}
+            <div className="p-2">
+              {MODES.map((opt) => (
+                <button
+                  key={opt.value}
+                  onClick={() => setMode(opt.value)}
+                  className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-all ${
+                    mode === opt.value
+                      ? "bg-primary/10"
+                      : "hover:bg-secondary"
+                  }`}
+                >
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-secondary text-base font-medium">
+                    {opt.icon}
+                  </span>
+                  <div className="flex-1">
+                    <p className={`text-sm font-medium ${mode === opt.value ? "text-primary" : ""}`}>
+                      {opt.label}
+                    </p>
+                    <p className="text-xs text-muted-foreground">{opt.desc}</p>
+                  </div>
+                  {mode === opt.value && (
+                    <motion.span
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      className="text-sm text-primary"
+                    >
+                      ✓
+                    </motion.span>
+                  )}
+                </button>
+              ))}
+            </div>
+
+            {/* Start button */}
+            <div className="border-t border-border p-3">
+              <button
+                onClick={() => setStarted(true)}
+                className="w-full rounded-xl bg-primary py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+              >
+                Bắt đầu luyện tập
+              </button>
+            </div>
+          </motion.div>
+
+          {/* Info card */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.15 }}
+            className="mt-3 rounded-xl border border-border bg-card p-3"
+          >
+            <p className="text-xs text-muted-foreground">
+              <span className="font-medium text-foreground">46</span> ký tự cơ bản ·{" "}
+              <span className="font-medium text-foreground">25</span> biến âm
+            </p>
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  );
 }

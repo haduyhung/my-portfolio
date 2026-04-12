@@ -240,7 +240,38 @@
     "exit": "終了",
     "answer": "答え：",
     "time": "タイム：",
-    "maxCombo": "最高コンボ："
+    "maxCombo": "最高コンボ：",
+    "minna": {
+      "title": "みんなの日本語",
+      "subtitle": "みんなの日本語テキストの語彙",
+      "book1": "第1巻",
+      "book2": "第2巻",
+      "lesson": "課",
+      "wordCount": "{count}語",
+      "studyLanguage": "学習言語",
+      "chooseExercise": "練習タイプを選ぶ",
+      "wordList": "単語リスト",
+      "exercises": {
+        "flashcard": "フラッシュカード",
+        "flashcardDesc": "カードをめくって語彙を復習",
+        "meaningQuiz": "意味クイズ",
+        "meaningQuizDesc": "正しい意味を選ぶ",
+        "readingQuiz": "読みクイズ",
+        "readingQuizDesc": "正しい読み（かな）を選ぶ",
+        "typingQuiz": "タイピングクイズ",
+        "typingQuizDesc": "意味からローマ字を入力",
+        "matching": "マッチング",
+        "matchingDesc": "単語と意味を結ぶ"
+      },
+      "flip": "カードをめくる",
+      "knew": "知っていた",
+      "didntKnow": "知らなかった",
+      "match": "マッチ済み: {count}/{total}",
+      "round": "ラウンド {current}/{total}",
+      "notEnoughKanji": "このレッスンには漢字の単語が足りません",
+      "backToLesson": "レッスンに戻る",
+      "backToLessons": "レッスン一覧に戻る"
+    }
   },
   "blog": {
     "title": "ブログ",

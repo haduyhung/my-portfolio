@@ -1,0 +1,255 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "skills": "Compétences",
+    "experience": "Expérience",
+    "projects": "Projets",
+    "contact": "Contact",
+    "blog": "Blog",
+    "japanese": "Pratique du japonais"
+  },
+  "hero": {
+    "greeting": "Bonjour, je suis",
+    "tagline": "Créer des expériences web & mobile modernes",
+    "description": "Un développeur Frontend passionné avec plus de 3,5 ans d'expérience dans la création de produits numériques réactifs, performants et conviviaux avec React, Next.js et React Native.",
+    "viewWork": "Voir mes travaux",
+    "getInTouch": "Me contacter"
+  },
+  "about": {
+    "title": "À propos de moi",
+    "subtitle": "Apprenez à mieux me connaître",
+    "summary": "Je suis un développeur frontend professionnel avec plus de 3,5 ans d'expérience dans la création d'applications web et mobiles. Doté d'une pensée créative et analytique solide, d'un souci du détail et d'un esprit d'équipe. J'améliore continuellement mon flux de travail grâce aux outils de développement assistés par IA.",
+    "specialization": "Je me spécialise dans la création d'applications web modernes avec <react>React</react>, <nextjs>Next.js</nextjs> et <typescript>TypeScript</typescript>, tout en ayant une expérience pratique du développement mobile avec <reactNative>React Native</reactNative> et <kotlin>Kotlin</kotlin>. Je suis passionné par l'utilisation d'outils assistés par IA pour booster la productivité et livrer un code de haute qualité.",
+    "highlights": {
+      "experience": "Expérience",
+      "experienceValue": "3,5+ ans",
+      "location": "Localisation",
+      "education": "Formation",
+      "born": "Né(e)"
+    }
+  },
+  "skills": {
+    "title": "Compétences & Technologies",
+    "subtitle": "Outils et technologies avec lesquels je travaille",
+    "categories": {
+      "frontendCore": "Frontend principal",
+      "stateManagement": "Gestion d'état",
+      "uiLibraries": "Bibliothèques UI & Style",
+      "mobile": "Mobile & Multiplateforme",
+      "tools": "Outils & Autres",
+      "ai": "Développement assisté par IA"
+    }
+  },
+  "experience": {
+    "title": "Expérience",
+    "subtitle": "Mon parcours professionnel",
+    "katech": {
+      "role": "Développeur Front-end",
+      "description": "Travail sur la page d'accueil de Katech et Let's Goo — une application de planification de voyages et de réservation de services touristiques.",
+      "responsibilities": [
+        "Maintenance et optimisation de la page d'accueil Katech, correction des problèmes UI/UX",
+        "Développement des fonctionnalités mobiles principales de l'application Let's Goo : création de voyages, gestion d'itinéraires et modules de réservation de services",
+        "Utilisation de MCP pour l'analyse de design Figma assistée par IA et de Claude Code pour l'assistance au codage",
+        "Travail avec les spécifications OpenAPI YAML et OpenAPI Generator pour automatiser la création des clients API"
+      ]
+    },
+    "techhub": {
+      "role": "Développeur Front-end & Mobile",
+      "description": "Création de deux produits majeurs : LearnHub (plateforme d'e-learning) et Giftly (site e-commerce).",
+      "responsibilities": [
+        "Création d'interfaces réactives et conviviales avec des performances optimisées",
+        "Implémentation de fonctionnalités d'apprentissage interactives : suivi de la progression, navigation dans les cours",
+        "Développement de fonctionnalités e-commerce : recherche, filtrage, panier, processus de paiement",
+        "Collaboration avec les API backend et optimisation des performances frontend pour une meilleure expérience utilisateur"
+      ]
+    },
+    "viettel": {
+      "role": "Développeur Front-end",
+      "description": "Développeur sur site pour la plateforme VCS-SOAR (Security Orchestration, Automation and Response).",
+      "responsibilities": [
+        "Création des interfaces et fonctionnalités du projet basées sur le design Figma",
+        "Coordination avec les équipes Back-end (API) et BA",
+        "Rédaction de tests unitaires pour couvrir le code et assurance de la qualité avec Checkmarx, SonarQube et SCA"
+      ]
+    },
+    "reactplus": {
+      "role": "Développeur Mobile",
+      "description": "Travail sur une plateforme Nocode permettant le développement d'applications par glisser-déposer de composants, au service de clients japonais.",
+      "responsibilities": [
+        "Développement de nouveaux composants et fonctionnalités pour la plateforme Nocode",
+        "Travail dans une équipe pouvant atteindre 20 membres au pic",
+        "Développement de fonctionnalités avec ReactJS pour le frontend et React Native pour le mobile"
+      ]
+    }
+  },
+  "projects": {
+    "title": "Projets en vedette",
+    "subtitle": "Points forts de mon travail professionnel",
+    "categories": {
+      "web": "Application Web",
+      "mobile": "Application Mobile",
+      "fullstack": "Full Stack"
+    },
+    "letsGoo": {
+      "title": "Let's Goo",
+      "description": "Une application de planification de voyages permettant aux utilisateurs de créer et gérer des itinéraires, réserver des services tels que l'hébergement, la location de voiture, les billets de bus, les vols, les attractions et les restaurants, avec des fonctionnalités sociales pour partager ses aventures.",
+      "longDescription": "Let's Goo est une application de planification de voyages complète conçue pour simplifier les expériences de voyage. Les utilisateurs peuvent créer des itinéraires détaillés, réserver une large gamme de services comprenant hébergement, location de voiture, billets de bus, vols, attractions touristiques et restaurants — le tout dans un seul voyage. L'application intègre également un composant social permettant aux utilisateurs de partager leurs aventures et de suivre d'autres voyageurs pour s'inspirer. Développée avec un accent sur une expérience mobile fluide et soutenue par des workflows de développement assistés par IA.",
+      "highlights": [
+        "Création de voyage & gestion d'itinéraire",
+        "Réservation multi-services (hôtels, vols, location de voiture, bus)",
+        "Fonctionnalités sociales pour partager ses voyages",
+        "Analyse de design Figma assistée par IA avec MCP"
+      ],
+      "responsibilities": [
+        "Développement des fonctionnalités mobiles principales incluant la création de voyages, la gestion d'itinéraires et les modules de réservation de services (hébergement, location de voiture, vols, billets de bus, attractions)",
+        "Intégration des API et optimisation des performances de l'application",
+        "Utilisation de MCP pour l'analyse de design Figma assistée par IA",
+        "Exploitation de Claude Code pour l'assistance au codage",
+        "Travail avec les spécifications OpenAPI YAML fournies par le backend et utilisation d'OpenAPI Generator pour automatiser la création de clients API"
+      ]
+    },
+    "learnhub": {
+      "title": "LearnHub",
+      "description": "Une plateforme d'apprentissage en ligne permettant aux utilisateurs d'accéder et d'étudier des cours à tout moment et en tout lieu, avec des cours vidéo, des quiz et un suivi de la progression avec les rôles Admin/Instructeur/Étudiant.",
+      "longDescription": "LearnHub est une application web d'e-learning complète offrant une expérience d'apprentissage en ligne fluide. La plateforme prend en charge les cours vidéo, les quiz interactifs et un suivi complet de la progression. Elle dispose d'un système de gestion multi-rôles avec des rôles Admin, Instructeur et Étudiant, chacun avec des tableaux de bord et des fonctionnalités adaptés. L'application a été développée avec un fort accent sur le design réactif et l'optimisation des performances frontend.",
+      "highlights": [
+        "Cours vidéo & système de quiz",
+        "Suivi de la progression d'apprentissage",
+        "Gestion multi-rôles (Admin/Instructeur/Étudiant)",
+        "Réactif & optimisé en performance"
+      ],
+      "responsibilities": [
+        "Création d'interfaces réactives et conviviales",
+        "Optimisation des performances frontend pour des chargements de pages rapides",
+        "Implémentation de fonctionnalités d'apprentissage interactives telles que le suivi de progression et la navigation dans les cours",
+        "Collaboration avec l'équipe backend pour l'intégration des API"
+      ]
+    },
+    "giftly": {
+      "title": "Giftly",
+      "description": "Une plateforme e-commerce permettant aux utilisateurs de parcourir et acheter des produits en ligne, avec panier, paiement et gestion des commandes, et un système d'administration complet.",
+      "longDescription": "Giftly est une plateforme e-commerce moderne conçue pour offrir une expérience d'achat en ligne fluide. Les utilisateurs peuvent parcourir les produits, utiliser la recherche avancée et le filtrage, gérer leur panier et finaliser leurs achats via un processus de paiement simplifié. La plateforme comprend un système d'administration complet pour gérer les produits, catégories, commandes et utilisateurs. Développée avec un accent sur les performances frontend et une excellente expérience utilisateur.",
+      "highlights": [
+        "Recherche & filtrage de produits",
+        "Panier & processus de paiement",
+        "Système de gestion des commandes",
+        "Tableau de bord admin pour produits, catégories & utilisateurs"
+      ],
+      "responsibilities": [
+        "Développement de fonctionnalités e-commerce interactives incluant recherche, filtrage, panier et paiement",
+        "Collaboration avec les API backend pour un flux de données fluide",
+        "Optimisation des performances frontend pour une meilleure expérience utilisateur",
+        "Implémentation d'un design réactif sur tous les appareils"
+      ]
+    },
+    "nocodePlatform": {
+      "title": "Plateforme Nocode",
+      "description": "Une plateforme permettant de développer des applications sans coder par glisser-déposer de composants disponibles, au service de clients japonais avec une équipe pouvant atteindre 20 membres.",
+      "longDescription": "La plateforme Nocode est un outil de développement innovant permettant aux utilisateurs de créer des applications sans écrire de code. Grâce à une interface intuitive de glisser-déposer, les utilisateurs peuvent assembler des composants disponibles pour créer des applications web et mobiles fonctionnelles. La plateforme a été développée pour des clients japonais avec une équipe culminant à 20 membres, avec un frontend web basé sur ReactJS et un support mobile React Native.",
+      "highlights": [
+        "Constructeur d'applications par glisser-déposer",
+        "Développement de composants personnalisés",
+        "Multiplateforme (Web & Mobile)",
+        "Au service de clients japonais"
+      ],
+      "responsibilities": [
+        "Développement de nouveaux composants et fonctionnalités pour la plateforme Nocode",
+        "Travail dans une équipe pluridisciplinaire pouvant atteindre 20 membres",
+        "Développement de fonctionnalités avec ReactJS pour le frontend et React Native pour le mobile",
+        "Collaboration sur les exigences et spécifications des clients japonais"
+      ]
+    },
+    "vcsSoar": {
+      "title": "VCS - SOAR",
+      "description": "Plateforme de Security Orchestration, Automation and Response pour Viettel Cyber Security, conçue pour automatiser et rationaliser les opérations de sécurité.",
+      "longDescription": "VCS-SOAR (Security Orchestration, Automation and Response) est une plateforme de sécurité d'entreprise développée pour Viettel Cyber Security. La plateforme est conçue pour automatiser et rationaliser les opérations de sécurité, permettant aux équipes de sécurité de répondre plus efficacement aux menaces. Développée avec Angular 11 pour le frontend et Python/Golang pour le backend, le projet a mis l'accent sur la qualité du code grâce à des tests unitaires complets et des outils d'analyse statique.",
+      "highlights": [
+        "Orchestration & automatisation de la sécurité",
+        "Développé selon les spécifications de design Figma",
+        "Tests unitaires avec une couverture de code élevée",
+        "Qualité du code assurée avec Checkmarx & SonarQube"
+      ],
+      "responsibilities": [
+        "Création des interfaces et fonctionnalités du projet basées sur les spécifications de design Figma",
+        "Coordination avec les équipes Back-end (API) et BA pour une intégration fluide",
+        "Rédaction de tests unitaires pour assurer une couverture de code élevée",
+        "Assurance de la qualité du code avec Checkmarx, SonarQube et les outils SCA"
+      ]
+    },
+    "detail": {
+      "overview": "Aperçu",
+      "keyFeatures": "Fonctionnalités clés",
+      "myResponsibilities": "Mes responsabilités",
+      "myRole": "Mon rôle",
+      "techStack": "Stack technique",
+      "projectInfo": "Infos du projet",
+      "company": "Entreprise",
+      "period": "Période",
+      "type": "Type",
+      "teamSize": "Taille de l'équipe",
+      "teamMembers": "{count} membres",
+      "otherProjects": "Autres projets",
+      "backToProjects": "Retour aux projets"
+    }
+  },
+  "contact": {
+    "title": "Me contacter",
+    "subtitle": "Travaillons ensemble sur quelque chose de grand",
+    "intro": "Je suis toujours ouvert à discuter de nouveaux projets, d'idées créatives ou d'opportunités de faire partie de votre vision. N'hésitez pas à me contacter !",
+    "email": "E-mail",
+    "phone": "Téléphone",
+    "location": "Localisation",
+    "education": "Formation",
+    "interests": "Centres d'intérêt",
+    "english": "Anglais",
+    "englishLevel": "Capable de lire, comprendre et rédiger des documents"
+  },
+  "education": {
+    "school": "Université de l'Énergie Électrique",
+    "major": "Technologie de l'Information",
+    "status": "Diplômé(e)"
+  },
+  "interests": {
+    "items": [
+      "Explorer de nouvelles technologies",
+      "Jouer à des jeux de stratégie comme les échecs et le Go pour améliorer les compétences en résolution de problèmes"
+    ]
+  },
+  "footer": {
+    "rights": "Tous droits réservés.",
+    "builtWith": "Construit avec"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "description": "La page que vous recherchez n'existe pas ou a été déplacée.",
+    "backHome": "Retour à l'accueil"
+  },
+  "japanese": {
+    "result": "Résultats",
+    "perfect": "Parfait ! Vous avez tout trouvé !",
+    "good": "Excellent travail ! Poussez encore un peu.",
+    "keepGoing": "Continuez à pratiquer, vous pouvez le faire !",
+    "restart": "Recommencer",
+    "back": "Retour",
+    "wrongCount": "Faux — {count}",
+    "correctCount": "Correct — {count}",
+    "placeholder": "Entrez le romaji...",
+    "confirm": "Confirmer",
+    "score": "Score :",
+    "exit": "Quitter",
+    "answer": "Réponse :",
+    "time": "Temps :",
+    "maxCombo": "Meilleur combo :"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Réflexions, tutoriels et insights",
+    "readMore": "Lire la suite",
+    "minRead": "{count} min de lecture",
+    "noPosts": "Aucun article pour l'instant. Restez à l'écoute !",
+    "backToBlog": "Retour au blog",
+    "publishedOn": "Publié le {date}",
+    "tags": "Tags"
+  }
+}
