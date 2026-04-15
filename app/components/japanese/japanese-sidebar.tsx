@@ -60,6 +60,7 @@ export function JapaneseSidebar({ isOpen, onClose }: JapaneseSidebarProps) {
     pathname.includes("/japanese/hiragana") || pathname.includes("/japanese/katakana")
   );
   const [minnaOpen, setMinnaOpen] = useState(pathname.includes("/japanese/minna"));
+  const [numbersOpen, setNumbersOpen] = useState(pathname.includes("/japanese/numbers"));
   const [showLogout, setShowLogout] = useState(false);
 
   const handleLogout = () => {
@@ -97,7 +98,8 @@ export function JapaneseSidebar({ isOpen, onClose }: JapaneseSidebarProps) {
               alt="HDH Logo"
               width={32}
               height={32}
-              className="h-auto w-auto object-contain"
+              style={{ width: 32, height: 32 }}
+              className="object-contain"
             />
           </button>
           <span className="ml-auto text-xs text-muted-foreground">日本語</span>
@@ -211,6 +213,59 @@ export function JapaneseSidebar({ isOpen, onClose }: JapaneseSidebarProps) {
                               })}
                           </div>
                         </div>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Số đếm */}
+          <div className="mb-1">
+            <button
+              onClick={() => setNumbersOpen((v: boolean) => !v)}
+              className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-secondary ${
+                isActive("/japanese/numbers") ? "text-primary" : "text-foreground"
+              }`}
+            >
+              <span>Số đếm</span>
+              <motion.span
+                animate={{ rotate: numbersOpen ? 90 : 0 }}
+                transition={{ duration: 0.2 }}
+                className="text-muted-foreground"
+              >
+                <ChevronRight size={14} />
+              </motion.span>
+            </button>
+            <AnimatePresence initial={false}>
+              {numbersOpen && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="overflow-hidden"
+                >
+                  <div className="ml-3 mt-1 flex flex-col gap-0.5 border-l border-border pl-3">
+                    {[
+                      { id: 1, label: "Số cơ bản" },
+                      { id: 2, label: "Đơn vị đếm" },
+                      { id: 3, label: "Số thuần Nhật" },
+                    ].map((item) => {
+                      const href = `/japanese/numbers/${item.id}`;
+                      return (
+                        <button
+                          key={item.id}
+                          onClick={() => router.push(href as any)}
+                          className={`rounded-md px-3 py-1.5 text-left text-sm transition-colors ${
+                            isActive(href)
+                              ? "bg-primary/10 font-medium text-primary"
+                              : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+                          }`}
+                        >
+                          {item.label}
+                        </button>
                       );
                     })}
                   </div>
