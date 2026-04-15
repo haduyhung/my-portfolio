@@ -47,7 +47,8 @@ export function Header() {
             alt="HDH Logo"
             width={40}
             height={40}
-            className="h-auto w-auto object-contain"
+            style={{ width: 40, height: 40 }}
+            className="object-contain"
             priority
           />
         </a>
