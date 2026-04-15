@@ -197,7 +197,8 @@ export function HeroButton({ href, text, showLogo = true, variant = "primary" }:
                 alt=""
                 width={32}
                 height={32}
-                className="aspect-square rounded-full object-contain"
+                style={{ width: 32, height: 32 }}
+                className="rounded-full object-contain"
               />
             </div>
           </div>

@@ -21,6 +21,20 @@ function getPageInfo(pathname: string): { title: string; subtitle?: string } {
   if (pathname.includes("/minna")) return { title: "Minna no Nihongo", subtitle: "みんなの日本語" };
   if (pathname.includes("/hiragana")) return { title: "Hiragana", subtitle: "ひらがな" };
   if (pathname.includes("/katakana")) return { title: "Katakana", subtitle: "カタカナ" };
+  const numbersLessonMatch = pathname.match(/\/numbers\/(\d+)$/);
+  if (numbersLessonMatch) return { title: `Bài ${numbersLessonMatch[1]}`, subtitle: "Số đếm" };
+  const numbersExMatch = pathname.match(/\/numbers\/(\d+)\/([^/]+)$/);
+  if (numbersExMatch) {
+    const typeMap: Record<string, string> = {
+      "flashcard": "Flashcard",
+      "meaning-quiz": "Quiz nghĩa",
+      "reading-quiz": "Quiz đọc",
+      "typing-quiz": "Quiz gõ",
+      "matching": "Nối từ",
+    };
+    return { title: `Bài ${numbersExMatch[1]}`, subtitle: typeMap[numbersExMatch[2]] ?? numbersExMatch[2] };
+  }
+  if (pathname.includes("/numbers")) return { title: "Số đếm", subtitle: "数の読み方" };
   return { title: "Tiếng Nhật", subtitle: "日本語" };
 }
 
