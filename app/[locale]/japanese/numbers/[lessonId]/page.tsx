@@ -59,7 +59,7 @@ export default function NumbersLessonPage({
   const lang: MinnaLang = locale === "fr" ? "fr" : locale === "vi" ? "vi" : "en";
 
   useEffect(() => {
-    if (sessionStorage.getItem("jp_auth") !== "1") {
+    if (localStorage.getItem("jp_auth") !== "1") {
       router.replace("/secret" as any);
       return;
     }
