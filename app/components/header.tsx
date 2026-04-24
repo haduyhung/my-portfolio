@@ -26,7 +26,7 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    setIsJpAuthed(sessionStorage.getItem("jp_auth") === "1");
+    setIsJpAuthed(localStorage.getItem("jp_auth") === "1");
   }, []);
 
   return (

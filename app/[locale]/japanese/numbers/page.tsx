@@ -9,7 +9,7 @@ export default function NumbersPage() {
   const router = useRouter();
 
   useEffect(() => {
-    if (sessionStorage.getItem("jp_auth") !== "1") {
+    if (localStorage.getItem("jp_auth") !== "1") {
       router.replace("/secret" as any);
     }
   }, [router]);

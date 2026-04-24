@@ -13,14 +13,14 @@ export default function SecretPage() {
   const [shake, setShake] = useState(false);
 
   useEffect(() => {
-    if (sessionStorage.getItem("jp_auth") === "1") {
+    if (localStorage.getItem("jp_auth") === "1") {
       router.replace("/japanese" as any);
     }
   }, [router]);
 
   const handleLogin = () => {
     if (value === PASSWORD) {
-      sessionStorage.setItem("jp_auth", "1");
+      localStorage.setItem("jp_auth", "1");
       router.push("/japanese" as any);
     } else {
       setError(true);

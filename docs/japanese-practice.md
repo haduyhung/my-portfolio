@@ -20,15 +20,15 @@ Footer (click © × 5) → /secret (đăng nhập) → /japanese (hub) → /japa
 
 - Mật khẩu hardcode: `051020`
 - Nhập sai: input rung (shake animation), hiện thông báo lỗi
-- Nhập đúng: lưu `jp_auth = "1"` vào `sessionStorage`, chuyển sang `/japanese`
-- Nếu đã đăng nhập trước đó (session còn): tự động redirect sang `/japanese`
+- Nhập đúng: lưu `jp_auth = "1"` vào `localStorage`, chuyển sang `/japanese`
+- Nếu đã đăng nhập trước đó: tự động redirect sang `/japanese`
 
 ### 3. Hub (`/japanese`)
 
 - Hiển thị 2 card chọn bảng chữ:
   - **Hiragana** (ひらがな)
   - **Katakana** (カタカナ)
-- Nút **Đăng xuất**: xóa `jp_auth` khỏi `sessionStorage`, về trang chủ
+- Nút **Đăng xuất**: xóa `jp_auth` khỏi `localStorage`, về trang chủ
 - Guard: nếu chưa đăng nhập → redirect về `/secret`
 
 ---
@@ -121,7 +121,7 @@ app/
 
 ## Auth & bảo mật
 
-- Xác thực phía **client** bằng `sessionStorage` (key: `jp_auth`)
-- Session tự hết khi đóng tab/trình duyệt
+- Xác thực phía **client** bằng `localStorage` (key: `jp_auth`)
+- Phiên đăng nhập không có thời hạn, chỉ mất khi bấm **Đăng xuất** hoặc xoá storage
 - Tất cả trang `/japanese/*` đều có guard kiểm tra `jp_auth`, redirect về `/secret` nếu chưa xác thực
 - Tính năng không được index bởi SEO (không có metadata, không có link public)

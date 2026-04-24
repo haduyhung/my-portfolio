@@ -15,7 +15,7 @@ export default function MinnaPage() {
   const [activeBook, setActiveBook] = useState<1 | 2>(1);
 
   useEffect(() => {
-    if (sessionStorage.getItem("jp_auth") !== "1") {
+    if (localStorage.getItem("jp_auth") !== "1") {
       router.replace("/secret" as any);
       return;
     }
