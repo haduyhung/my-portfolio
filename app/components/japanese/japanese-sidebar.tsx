@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ArrowLeft, ChevronRight, LogOut } from "lucide-react";
+import { ArrowLeft, ChevronRight, LogOut, RotateCcw } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname, useRouter } from "../../../i18n/navigation";
 import { BOOK_RANGES } from "../../constants/minna";
@@ -65,7 +65,7 @@ export function JapaneseSidebar({ isOpen, onClose }: JapaneseSidebarProps) {
 
   const handleLogout = () => {
     localStorage.removeItem("jp_auth");
-    router.push("/" as any);
+    router.push("/");
   };
 
   const isActive = (path: string) => pathname === path || pathname.startsWith(path + "/");
@@ -88,7 +88,7 @@ export function JapaneseSidebar({ isOpen, onClose }: JapaneseSidebarProps) {
         {/* Logo + back */}
         <div className="flex items-center gap-2 border-b border-border px-4 py-4">
           <button
-            onClick={() => router.push("/" as any)}
+            onClick={() => router.push("/")}
             className="flex items-center gap-2 transition-opacity hover:opacity-70"
             aria-label="Về trang chủ"
           >
@@ -142,7 +142,7 @@ export function JapaneseSidebar({ isOpen, onClose }: JapaneseSidebarProps) {
                     ].map((item) => (
                       <button
                         key={item.href}
-                        onClick={() => router.push(item.href as any)}
+                        onClick={() => router.push(item.href)}
                         className={`rounded-md px-3 py-1.5 text-left text-sm transition-colors ${
                           isActive(item.href)
                             ? "bg-primary/10 font-medium text-primary"
@@ -194,7 +194,7 @@ export function JapaneseSidebar({ isOpen, onClose }: JapaneseSidebarProps) {
                       return (
                         <button
                           key={item.id}
-                          onClick={() => router.push(href as any)}
+                          onClick={() => router.push(href)}
                           className={`rounded-md px-3 py-1.5 text-left text-sm transition-colors ${
                             isActive(href)
                               ? "bg-primary/10 font-medium text-primary"
@@ -210,6 +210,22 @@ export function JapaneseSidebar({ isOpen, onClose }: JapaneseSidebarProps) {
               )}
             </AnimatePresence>
           </div>
+
+          <button
+            onClick={() => {
+              router.push("/japanese/review");
+              onClose();
+            }}
+            aria-current={isActive("/japanese/review") ? "page" : undefined}
+            className={`mb-1 flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+              isActive("/japanese/review")
+                ? "bg-primary/10 text-primary"
+                : "text-foreground hover:bg-secondary"
+            }`}
+          >
+            <RotateCcw size={15} aria-hidden="true" />
+            Ôn tập
+          </button>
 
           {/* Minna no Nihongo */}
           <div className="mb-1">
@@ -253,7 +269,7 @@ export function JapaneseSidebar({ isOpen, onClose }: JapaneseSidebarProps) {
                                 return (
                                   <button
                                     key={n}
-                                    onClick={() => router.push(href as any)}
+                                    onClick={() => router.push(href)}
                                     className={`rounded-md px-3 py-1 text-left text-sm transition-colors ${
                                       isActive(href)
                                         ? "bg-primary/10 font-medium text-primary"

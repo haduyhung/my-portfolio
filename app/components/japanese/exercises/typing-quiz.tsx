@@ -2,13 +2,11 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useRouter } from "../../../../i18n/navigation";
+import type { ExerciseProps } from "./exercise-props";
+import { useExerciseTimeouts } from "./use-exercise-timeouts";
+import { shuffle } from "./exercise-data";
+import { ExerciseUnavailable } from "./exercise-unavailable";
 import type { MinnaWord } from "../../../constants/minna";
-import type { MinnaLang } from "../../../hooks/use-minna-lang";
-
-function shuffle<T>(arr: T[]): T[] {
-  return [...arr].sort(() => Math.random() - 0.5);
-}
 
 function formatTime(s: number) {
   return `${Math.floor(s / 60).toString().padStart(2, "0")}:${(s % 60).toString().padStart(2, "0")}`;
@@ -20,14 +18,9 @@ interface AnswerRecord {
   correct: boolean;
 }
 
-interface Props {
-  words: MinnaWord[];
-  lessonId: number;
-  lang: MinnaLang;
-}
-
-export function TypingQuiz({ words, lessonId, lang }: Props) {
-  const router = useRouter();
+export function TypingQuiz({ words, lang, onExit, onRestart, exitLabel = "Về bài học" }: ExerciseProps) {
+  const schedule = useExerciseTimeouts();
+  const answeringRef = useRef(false);
   const [deck] = useState<MinnaWord[]>(() => shuffle(words));
   const [index, setIndex] = useState(0);
   const [input, setInput] = useState("");
@@ -65,7 +58,8 @@ export function TypingQuiz({ words, lessonId, lang }: Props) {
   }, [index, feedback]);
 
   const advance = useCallback(() => {
-    if (feedback || !input.trim()) return;
+    if (answeringRef.current || feedback || !current || !input.trim()) return;
+    answeringRef.current = true;
     const answer = input.trim().toLowerCase();
     const isCorrect = answer === current.romaji.toLowerCase();
     setFeedback(isCorrect ? "correct" : "wrong");
@@ -80,13 +74,16 @@ export function TypingQuiz({ words, lessonId, lang }: Props) {
       setCombo(0);
     }
     setHistory((h) => [...h, { word: current, userAnswer: answer, correct: isCorrect }]);
-    setTimeout(() => {
+    schedule(() => {
+      answeringRef.current = false;
       setFeedback(null);
       setInput("");
       if (index + 1 >= total) setDone(true);
       else setIndex((i) => i + 1);
     }, 800);
-  }, [feedback, input, current, index, total]);
+  }, [feedback, input, current, index, total, schedule]);
+
+  if (!current) return <ExerciseUnavailable onExit={onExit} exitLabel={exitLabel} />;
 
   if (done) {
     const wrong = history.filter((r) => !r.correct);
@@ -102,10 +99,10 @@ export function TypingQuiz({ words, lessonId, lang }: Props) {
             {maxCombo >= 3 && <span>Combo: <span className="font-medium text-orange-500">🔥 x{maxCombo}</span></span>}
           </div>
           <div className="flex gap-3 mt-1">
-            <button onClick={() => router.push(`/japanese/minna/${lessonId}/typing-quiz` as any)}
+            <button onClick={onRestart}
               className="rounded-lg bg-primary px-6 py-2 text-sm font-medium text-primary-foreground hover:opacity-90">Làm lại</button>
-            <button onClick={() => router.push(`/japanese/minna/${lessonId}` as any)}
-              className="rounded-lg border border-border px-6 py-2 text-sm font-medium hover:bg-secondary">Thoát</button>
+            <button onClick={onExit}
+              className="rounded-lg border border-border px-6 py-2 text-sm font-medium hover:bg-secondary">{exitLabel}</button>
           </div>
         </motion.div>
         <div className="grid w-full max-w-2xl gap-6 sm:grid-cols-2">
@@ -197,7 +194,7 @@ export function TypingQuiz({ words, lessonId, lang }: Props) {
 
         <div className="mt-4 flex justify-between text-sm text-muted-foreground">
           <span>Điểm: <span className="font-medium text-foreground">{score}</span></span>
-          <button onClick={() => router.push(`/japanese/minna/${lessonId}` as any)} className="hover:text-foreground transition-colors">Thoát</button>
+          <button onClick={onExit} className="hover:text-foreground transition-colors">{exitLabel}</button>
         </div>
       </div>
     </div>

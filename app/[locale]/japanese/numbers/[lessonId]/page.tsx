@@ -11,6 +11,7 @@ import {
   type MinnaWord,
 } from "../../../../constants/numbers";
 import type { MinnaLang } from "../../../../hooks/use-minna-lang";
+import { EXERCISES } from "../../../../constants/japanese-exercises";
 
 function WordRow({
   word,
@@ -37,14 +38,6 @@ function WordRow({
   );
 }
 
-const EXERCISES = [
-  { type: "flashcard", label: "Flashcard", desc: "Lật thẻ ôn từ vựng", emoji: "🃏" },
-  { type: "meaning-quiz", label: "Quiz nghĩa", desc: "Chọn nghĩa đúng của từ", emoji: "🧠" },
-  { type: "reading-quiz", label: "Quiz đọc", desc: "Chọn cách đọc đúng (kana)", emoji: "👁" },
-  { type: "typing-quiz", label: "Quiz gõ", desc: "Gõ romaji từ nghĩa của từ", emoji: "⌨️" },
-  { type: "matching", label: "Nối từ", desc: "Nối từ với nghĩa tương ứng", emoji: "🔗" },
-] as const;
-
 export default function NumbersLessonPage({
   params,
 }: {
@@ -60,11 +53,11 @@ export default function NumbersLessonPage({
 
   useEffect(() => {
     if (localStorage.getItem("jp_auth") !== "1") {
-      router.replace("/secret" as any);
+      router.replace("/secret");
       return;
     }
     if (!lesson) {
-      router.replace("/japanese/numbers" as any);
+      router.replace("/japanese/numbers");
     }
   }, [lesson, router]);
 
@@ -82,7 +75,7 @@ export default function NumbersLessonPage({
           className="mb-5"
         >
           <button
-            onClick={() => router.push("/japanese/numbers" as any)}
+            onClick={() => router.push("/japanese/numbers")}
             className="mb-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             ← Về danh sách bài
@@ -162,7 +155,7 @@ export default function NumbersLessonPage({
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.06 }}
                   onClick={() =>
-                    router.push(`/japanese/numbers/${lessonId}/${ex.type}` as any)
+                    router.push(`/japanese/numbers/${lessonId}/${ex.type}`)
                   }
                   className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-all hover:bg-secondary"
                 >

@@ -2,23 +2,14 @@
 
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useRouter } from "../../../../i18n/navigation";
+import type { ExerciseProps } from "./exercise-props";
+import { useExerciseTimeouts } from "./use-exercise-timeouts";
+import { createQuizPool, getQuizChoices, shuffle, wordKey } from "./exercise-data";
+import { ExerciseUnavailable } from "./exercise-unavailable";
 import type { MinnaWord } from "../../../constants/minna";
-import type { MinnaLang } from "../../../hooks/use-minna-lang";
-
-function shuffle<T>(arr: T[]): T[] {
-  return [...arr].sort(() => Math.random() - 0.5);
-}
 
 function formatTime(s: number) {
   return `${Math.floor(s / 60).toString().padStart(2, "0")}:${(s % 60).toString().padStart(2, "0")}`;
-}
-
-function getChoices(correct: MinnaWord, pool: MinnaWord[], lang: MinnaLang): MinnaWord[] {
-  const others = shuffle(
-    pool.filter((w) => w.id[0] !== correct.id[0] || w.id[1] !== correct.id[1])
-  ).slice(0, 3);
-  return shuffle([correct, ...others]);
 }
 
 interface AnswerRecord {
@@ -26,14 +17,9 @@ interface AnswerRecord {
   correct: boolean;
 }
 
-interface Props {
-  words: MinnaWord[];
-  lessonId: number;
-  lang: MinnaLang;
-}
-
-export function MeaningQuiz({ words, lessonId, lang }: Props) {
-  const router = useRouter();
+export function MeaningQuiz({ words, lang, onExit, onRestart, exitLabel = "Về bài học" }: ExerciseProps) {
+  const schedule = useExerciseTimeouts();
+  const answeringRef = useRef(false);
   const [deck] = useState<MinnaWord[]>(() => shuffle(words));
   const [index, setIndex] = useState(0);
   const [feedback, setFeedback] = useState<"correct" | "wrong" | null>(null);
@@ -51,14 +37,10 @@ export function MeaningQuiz({ words, lessonId, lang }: Props) {
   const total = deck.length;
   const comboEmoji = combo >= 10 ? "💥" : combo >= 5 ? "🔥🔥" : "🔥";
 
-  const choices = useMemo(
-    () => getChoices(current, words, lang),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [index]
-  );
+  const pool = useMemo(() => createQuizPool(words, "meaning-quiz", lang), [words, lang]);
+  const choices = useMemo(() => getQuizChoices(current, pool), [current, pool]);
 
   const getMeaning = (w: MinnaWord) => w.meaning[lang] ?? w.meaning.en ?? "";
-  const wordKey = (w: MinnaWord) => `${w.id[0]}-${w.id[1]}`;
 
   useEffect(() => {
     intervalRef.current = setInterval(() => setElapsed((s) => s + 1), 1000);
@@ -74,6 +56,8 @@ export function MeaningQuiz({ words, lessonId, lang }: Props) {
 
   const advance = useCallback(
     (isCorrect: boolean, choiceKey: string) => {
+      if (answeringRef.current || !current) return;
+      answeringRef.current = true;
       setSelected(choiceKey);
       setFeedback(isCorrect ? "correct" : "wrong");
       if (isCorrect) {
@@ -87,15 +71,20 @@ export function MeaningQuiz({ words, lessonId, lang }: Props) {
         setCombo(0);
       }
       setHistory((h) => [...h, { word: current, correct: isCorrect }]);
-      setTimeout(() => {
+      schedule(() => {
+        answeringRef.current = false;
         setFeedback(null);
         setSelected(null);
         if (index + 1 >= total) setDone(true);
         else setIndex((i) => i + 1);
       }, 800);
     },
-    [current, index, total]
+    [current, index, total, schedule]
   );
+
+  if (!current || choices.length < 4) {
+    return <ExerciseUnavailable onExit={onExit} exitLabel={exitLabel} />;
+  }
 
   if (done) {
     const wrong = history.filter((r) => !r.correct);
@@ -116,16 +105,16 @@ export function MeaningQuiz({ words, lessonId, lang }: Props) {
           </div>
           <div className="flex gap-3 mt-1">
             <button
-              onClick={() => router.push(`/japanese/minna/${lessonId}/meaning-quiz` as any)}
+              onClick={onRestart}
               className="rounded-lg bg-primary px-6 py-2 text-sm font-medium text-primary-foreground hover:opacity-90"
             >
               Làm lại
             </button>
             <button
-              onClick={() => router.push(`/japanese/minna/${lessonId}` as any)}
+              onClick={onExit}
               className="rounded-lg border border-border px-6 py-2 text-sm font-medium hover:bg-secondary"
             >
-              Thoát
+              {exitLabel}
             </button>
           </div>
         </motion.div>
@@ -222,7 +211,7 @@ export function MeaningQuiz({ words, lessonId, lang }: Props) {
 
         <div className="mt-4 flex justify-between text-sm text-muted-foreground">
           <span>Điểm: <span className="font-medium text-foreground">{score}</span></span>
-          <button onClick={() => router.push(`/japanese/minna/${lessonId}` as any)} className="hover:text-foreground transition-colors">Thoát</button>
+          <button onClick={onExit} className="hover:text-foreground transition-colors">{exitLabel}</button>
         </div>
       </div>
     </div>

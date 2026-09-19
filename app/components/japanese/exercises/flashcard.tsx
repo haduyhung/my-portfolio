@@ -1,23 +1,16 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useRouter } from "../../../../i18n/navigation";
+import type { ExerciseProps } from "./exercise-props";
+import { useExerciseTimeouts } from "./use-exercise-timeouts";
+import { shuffle } from "./exercise-data";
+import { ExerciseUnavailable } from "./exercise-unavailable";
 import type { MinnaWord } from "../../../constants/minna";
-import type { MinnaLang } from "../../../hooks/use-minna-lang";
 
-function shuffle<T>(arr: T[]): T[] {
-  return [...arr].sort(() => Math.random() - 0.5);
-}
-
-interface Props {
-  words: MinnaWord[];
-  lessonId: number;
-  lang: MinnaLang;
-}
-
-export function Flashcard({ words, lessonId, lang }: Props) {
-  const router = useRouter();
+export function Flashcard({ words, lang, onExit, onRestart, exitLabel = "Về bài học" }: ExerciseProps) {
+  const schedule = useExerciseTimeouts();
+  const answeringRef = useRef(false);
   const [deck, setDeck] = useState<MinnaWord[]>(() => shuffle(words));
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
@@ -34,13 +27,16 @@ export function Flashcard({ words, lessonId, lang }: Props) {
 
   const handleAnswer = useCallback(
     (didKnow: boolean) => {
+      if (answeringRef.current || !current) return;
+      answeringRef.current = true;
       if (didKnow) {
         setKnown((k) => [...k, current]);
       } else {
         setUnknown((u) => [...u, current]);
       }
       setFlipped(false);
-      setTimeout(() => {
+      schedule(() => {
+        answeringRef.current = false;
         if (index + 1 >= total) {
           setDone(true);
         } else {
@@ -48,10 +44,12 @@ export function Flashcard({ words, lessonId, lang }: Props) {
         }
       }, 150);
     },
-    [current, index, total]
+    [current, index, total, schedule]
   );
 
   const handleReviewUnknown = () => {
+    if (!unknown.length) return;
+    answeringRef.current = false;
     setDeck(shuffle(unknown));
     setIndex(0);
     setKnown([]);
@@ -61,15 +59,8 @@ export function Flashcard({ words, lessonId, lang }: Props) {
     setReviewMode(true);
   };
 
-  const handleRestart = () => {
-    setDeck(shuffle(words));
-    setIndex(0);
-    setKnown([]);
-    setUnknown([]);
-    setFlipped(false);
-    setDone(false);
-    setReviewMode(false);
-  };
+
+  if (!current) return <ExerciseUnavailable onExit={onExit} exitLabel={exitLabel} />;
 
   if (done) {
     return (
@@ -104,16 +95,16 @@ export function Flashcard({ words, lessonId, lang }: Props) {
             </button>
           )}
           <button
-            onClick={handleRestart}
+            onClick={onRestart}
             className="rounded-lg border border-border py-2.5 text-sm transition-colors hover:bg-secondary"
           >
             Làm lại từ đầu
           </button>
           <button
-            onClick={() => router.push(`/japanese/minna/${lessonId}` as any)}
+            onClick={onExit}
             className="text-sm text-muted-foreground hover:text-foreground transition-colors text-center"
           >
-            Về bài học
+            {exitLabel}
           </button>
         </div>
       </div>
@@ -140,7 +131,7 @@ export function Flashcard({ words, lessonId, lang }: Props) {
         <div
           className="cursor-pointer"
           style={{ perspective: 1000 }}
-          onClick={() => setFlipped((f) => !f)}
+          onClick={() => { if (!answeringRef.current) setFlipped((f) => !f); }}
         >
           <AnimatePresence mode="wait">
             <motion.div
@@ -195,7 +186,7 @@ export function Flashcard({ words, lessonId, lang }: Props) {
         ) : (
           <div className="mt-4 flex gap-3">
             <button
-              onClick={() => setFlipped(true)}
+              onClick={() => { if (!answeringRef.current) setFlipped(true); }}
               className="flex-1 rounded-xl border border-border py-3 text-sm font-medium transition-colors hover:bg-secondary"
             >
               Lật thẻ
@@ -205,10 +196,10 @@ export function Flashcard({ words, lessonId, lang }: Props) {
 
         <div className="mt-3 flex justify-end">
           <button
-            onClick={() => router.push(`/japanese/minna/${lessonId}` as any)}
+            onClick={onExit}
             className="text-xs text-muted-foreground hover:text-foreground transition-colors"
           >
-            Thoát
+            {exitLabel}
           </button>
         </div>
       </div>

@@ -4,48 +4,79 @@ import { use, useEffect, useState } from "react";
 import { useLocale } from "next-intl";
 import { useRouter } from "../../../../../../i18n/navigation";
 import { loadMinnaDataset, type MinnaWord } from "../../../../../constants/minna";
+import { isExerciseType } from "../../../../../constants/japanese-exercises";
 import type { MinnaLang } from "../../../../../hooks/use-minna-lang";
-import { Flashcard } from "../../../../../components/japanese/exercises/flashcard";
-import { MeaningQuiz } from "../../../../../components/japanese/exercises/meaning-quiz";
-import { ReadingQuiz } from "../../../../../components/japanese/exercises/reading-quiz";
-import { TypingQuiz } from "../../../../../components/japanese/exercises/typing-quiz";
-import { Matching } from "../../../../../components/japanese/exercises/matching";
+import { ExercisePlayer } from "../../../../../components/japanese/exercises/exercise-player";
 
-const VALID_TYPES = ["flashcard", "meaning-quiz", "reading-quiz", "typing-quiz", "matching"] as const;
-type ExerciseType = (typeof VALID_TYPES)[number];
+type LessonLoad =
+  | { status: "loading" }
+  | { status: "error" }
+  | { status: "ready"; words: MinnaWord[] };
 
 export default function ExercisePage({
   params,
 }: {
   params: Promise<{ lessonId: string; exerciseType: string }>;
 }) {
-  const router = useRouter();
   const locale = useLocale();
-  const { lessonId: lessonIdStr, exerciseType: exerciseTypeStr } = use(params);
-  const lessonId = parseInt(lessonIdStr, 10);
-  const exerciseType = exerciseTypeStr as ExerciseType;
-
-  const [words, setWords] = useState<MinnaWord[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { lessonId, exerciseType } = use(params);
   const lang: MinnaLang = locale === "fr" ? "fr" : locale === "vi" ? "vi" : "en";
 
-  useEffect(() => {
-    if (localStorage.getItem("jp_auth") !== "1") {
-      router.replace("/secret" as any);
-      return;
-    }
-    if (!VALID_TYPES.includes(exerciseType as ExerciseType)) {
-      router.replace(`/japanese/minna/${lessonId}` as any);
-      return;
-    }
-    loadMinnaDataset().then((ds) => {
-      const lesson = ds.lessons.find((l) => l.id === lessonId);
-      setWords(lesson?.words ?? []);
-      setLoading(false);
-    });
-  }, [lessonId, exerciseType, router]);
+  return (
+    <LessonExercise
+      key={`${lessonId}-${exerciseType}-${lang}`}
+      lessonIdStr={lessonId}
+      exerciseType={exerciseType}
+      lang={lang}
+    />
+  );
+}
 
-  if (loading) {
+function LessonExercise({
+  lessonIdStr,
+  exerciseType,
+  lang,
+}: {
+  lessonIdStr: string;
+  exerciseType: string;
+  lang: MinnaLang;
+}) {
+  const router = useRouter();
+  const lessonId = Number(lessonIdStr);
+  const validLessonId = /^[1-9]\d*$/.test(lessonIdStr) && lessonId <= 50;
+  const backHref = validLessonId ? `/japanese/minna/${lessonId}` : "/japanese/minna";
+  const [load, setLoad] = useState<LessonLoad>({ status: "loading" });
+  const [attempt, setAttempt] = useState(0);
+
+  useEffect(() => {
+    let authorized = false;
+    try {
+      authorized = localStorage.getItem("jp_auth") === "1";
+    } catch {
+      // Unavailable browser storage follows the existing sign-in flow.
+    }
+    if (!authorized) {
+      router.replace("/secret");
+      return;
+    }
+    if (!validLessonId || !isExerciseType(exerciseType)) {
+      router.replace(backHref);
+      return;
+    }
+    let cancelled = false;
+    loadMinnaDataset()
+      .then((dataset) => {
+        if (cancelled) return;
+        const lesson = dataset.lessons.find((item) => item.id === lessonId);
+        setLoad({ status: "ready", words: lesson?.words ?? [] });
+      })
+      .catch(() => {
+        if (!cancelled) setLoad({ status: "error" });
+      });
+    return () => { cancelled = true; };
+  }, [lessonId, validLessonId, exerciseType, backHref, attempt, router]);
+
+  if (load.status === "loading" || !validLessonId || !isExerciseType(exerciseType)) {
     return (
       <div className="flex min-h-screen items-center justify-center">
         <p className="text-muted-foreground">Đang tải...</p>
@@ -53,12 +84,32 @@ export default function ExercisePage({
     );
   }
 
-  if (words.length === 0) {
+  if (load.status === "error") {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4 p-6">
+        <p role="alert" className="font-medium">Không tải được dữ liệu bài học.</p>
+        <button
+          onClick={() => {
+            setLoad({ status: "loading" });
+            setAttempt((value) => value + 1);
+          }}
+          className="rounded-lg bg-primary px-6 py-2 text-sm font-medium text-primary-foreground hover:opacity-90"
+        >
+          Thử lại
+        </button>
+        <button onClick={() => router.push(backHref)} className="text-sm text-muted-foreground hover:text-foreground">
+          Về bài học
+        </button>
+      </div>
+    );
+  }
+
+  if (load.words.length === 0) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center gap-4 p-6">
         <p className="font-medium">Không tìm thấy bài học</p>
         <button
-          onClick={() => router.push("/japanese/minna" as any)}
+          onClick={() => router.push("/japanese/minna")}
           className="rounded-lg bg-primary px-6 py-2 text-sm font-medium text-primary-foreground hover:opacity-90"
         >
           Về danh sách bài
@@ -67,20 +118,13 @@ export default function ExercisePage({
     );
   }
 
-  const props = { words, lessonId, lang };
-
-  switch (exerciseType) {
-    case "flashcard":
-      return <Flashcard key={`${lessonId}-flashcard`} {...props} />;
-    case "meaning-quiz":
-      return <MeaningQuiz key={`${lessonId}-meaning-quiz`} {...props} />;
-    case "reading-quiz":
-      return <ReadingQuiz key={`${lessonId}-reading-quiz`} {...props} />;
-    case "typing-quiz":
-      return <TypingQuiz key={`${lessonId}-typing-quiz`} {...props} />;
-    case "matching":
-      return <Matching key={`${lessonId}-matching`} {...props} />;
-    default:
-      return null;
-  }
+  return (
+    <ExercisePlayer
+      key={`${lessonId}-${exerciseType}-${lang}`}
+      words={load.words}
+      lang={lang}
+      exerciseType={exerciseType}
+      backHref={backHref}
+    />
+  );
 }
