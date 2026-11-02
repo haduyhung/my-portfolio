@@ -67,7 +67,7 @@ test("missing, duplicate and empty lessons cannot silently produce a partial rev
 });
 
 test("settings and session URLs round-trip every exercise and preserve the range", () => {
-  for (const exerciseType of ["flashcard", "meaning-quiz", "reading-quiz", "typing-quiz", "matching"]) {
+  for (const exerciseType of ["flashcard", "reverse-flashcard", "meaning-quiz", "reading-quiz", "typing-quiz", "matching"]) {
     const config = { from: 24, to: 27, exerciseType };
     const settings = new URL(getReviewSettingsHref(config), "http://localhost");
     const session = new URL(getReviewSessionHref(config), "http://localhost");
