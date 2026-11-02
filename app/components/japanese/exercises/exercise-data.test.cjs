@@ -73,6 +73,7 @@ test("availability checks every question and unique labels, with locale fallback
   for (const type of EXERCISE_TYPES) assert.equal(getExerciseAvailability([], type, "vi").available, false);
   assert.equal(getExerciseAvailability(repeated, "meaning-quiz", "vi").available, false);
   assert.equal(getExerciseAvailability(repeated, "flashcard", "vi").wordCount, 8);
+  assert.deepEqual(getExerciseAvailability(repeated, "reverse-flashcard", "en"), { available: true, wordCount: 8 });
   const distinct = ["a", "b", "c", "d"].map((label, i) => word(i + 1, 1, label));
   assert.equal(getExerciseAvailability(distinct, "meaning-quiz", "fr").available, true);
   const fallback = word(5, 1, "fallback", { meaning: { vi: null, en: "a", fr: null } });

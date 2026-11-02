@@ -6,7 +6,7 @@ import type { ExerciseType } from "../../../constants/japanese-exercises";
 import type { MinnaWord } from "../../../constants/minna";
 import type { MinnaLang } from "../../../hooks/use-minna-lang";
 import { getExerciseAvailability } from "./exercise-data";
-import { Flashcard } from "./flashcard";
+import { Flashcard, ReverseFlashcard } from "./flashcard";
 import { MeaningQuiz } from "./meaning-quiz";
 import { ReadingQuiz } from "./reading-quiz";
 import { TypingQuiz } from "./typing-quiz";
@@ -23,6 +23,7 @@ interface ExercisePlayerProps {
 
 const components = {
   flashcard: Flashcard,
+  "reverse-flashcard": ReverseFlashcard,
   "meaning-quiz": MeaningQuiz,
   "reading-quiz": ReadingQuiz,
   "typing-quiz": TypingQuiz,

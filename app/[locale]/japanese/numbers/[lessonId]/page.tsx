@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use, useEffect } from "react";
+import React, { use, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useLocale } from "next-intl";
 import { useRouter } from "../../../../../i18n/navigation";
@@ -12,27 +12,30 @@ import {
 } from "../../../../constants/numbers";
 import type { MinnaLang } from "../../../../hooks/use-minna-lang";
 import { EXERCISES } from "../../../../constants/japanese-exercises";
+import { RomajiSwitch } from "../../../../components/japanese/romaji-switch";
 
 function WordRow({
   word,
   index,
   getMeaning,
+  showRomaji,
 }: {
   word: MinnaWord;
   index: number;
   getMeaning: (w: MinnaWord) => string;
+  showRomaji: boolean;
 }) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: index * 0.01 }}
-      className="grid grid-cols-[2rem_1fr_1fr_1fr_1.5fr] items-center border-t border-border px-4 py-2.5 transition-colors hover:bg-secondary/30"
+      className={`grid ${showRomaji ? "grid-cols-[2rem_1fr_1fr_1fr_1.5fr]" : "grid-cols-[2rem_1fr_1fr_1.5fr]"} items-center border-t border-border px-4 py-2.5 transition-colors hover:bg-secondary/30`}
     >
       <div className="text-xs text-muted-foreground">{index + 1}</div>
       <div className="font-medium">{word.kanji ?? "—"}</div>
       <div className="text-sm text-muted-foreground">{word.kana}</div>
-      <div className="text-sm text-muted-foreground">{word.romaji}</div>
+      {showRomaji && <div className="text-sm text-muted-foreground">{word.romaji}</div>}
       <div className="text-sm">{getMeaning(word)}</div>
     </motion.div>
   );
@@ -49,6 +52,8 @@ export default function NumbersLessonPage({
   const lessonId = parseInt(lessonIdStr, 10);
   const lesson = getNumbersLesson(lessonId);
   const words = lesson?.words ?? [];
+  const [showRomaji, setShowRomaji] = useState(true);
+  const wordGridClass = showRomaji ? "grid-cols-[2rem_1fr_1fr_1fr_1.5fr]" : "grid-cols-[2rem_1fr_1fr_1.5fr]";
   const lang: MinnaLang = locale === "fr" ? "fr" : locale === "vi" ? "vi" : "en";
 
   useEffect(() => {
@@ -68,7 +73,7 @@ export default function NumbersLessonPage({
   return (
     <div className="flex min-h-[calc(100vh-3.5rem)] flex-col md:flex-row">
       {/* Left: word list */}
-      <div className="flex-1 overflow-x-auto p-6">
+      <div className="min-w-0 flex-1 p-6">
         <motion.div
           initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -81,18 +86,21 @@ export default function NumbersLessonPage({
             ← Về danh sách bài
           </button>
           <h1 className="text-2xl font-bold">{NUMBERS_LESSON_LABELS[lessonId]}</h1>
-          <p className="mt-1 text-sm text-muted-foreground">{words.length} từ vựng</p>
+          <div className="mt-1 flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
+            <p className="text-sm text-muted-foreground">{words.length} từ vựng</p>
+            <RomajiSwitch checked={showRomaji} onCheckedChange={setShowRomaji} />
+          </div>
         </motion.div>
 
         {/* Word table */}
-        <div className="overflow-hidden rounded-xl border border-border">
-          <div className="min-w-130">
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <div className={showRomaji ? "min-w-130" : "min-w-96"}>
             {/* Table header */}
-            <div className="grid grid-cols-[2rem_1fr_1fr_1fr_1.5fr] border-b border-border bg-secondary/50 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <div className={`grid ${wordGridClass} border-b border-border bg-secondary/50 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground`}>
               <div>#</div>
               <div>漢字</div>
               <div>かな</div>
-              <div>Romaji</div>
+              {showRomaji && <div>Romaji</div>}
               <div>Nghĩa</div>
             </div>
 
@@ -101,7 +109,7 @@ export default function NumbersLessonPage({
               const sections = NUMBERS_SECTIONS[lessonId];
               if (!sections) {
                 return words.map((word, i) => (
-                  <WordRow key={`${word.id[0]}-${word.id[1]}`} word={word} index={i} getMeaning={getMeaning} />
+                  <WordRow key={`${word.id[0]}-${word.id[1]}`} word={word} index={i} getMeaning={getMeaning} showRomaji={showRomaji} />
                 ));
               }
               const rows: React.ReactNode[] = [];
@@ -119,7 +127,7 @@ export default function NumbersLessonPage({
                   const word = words[wordIdx];
                   if (!word) break;
                   rows.push(
-                    <WordRow key={`${word.id[0]}-${word.id[1]}`} word={word} index={wordIdx} getMeaning={getMeaning} />
+                    <WordRow key={`${word.id[0]}-${word.id[1]}`} word={word} index={wordIdx} getMeaning={getMeaning} showRomaji={showRomaji} />
                   );
                   wordIdx++;
                 }

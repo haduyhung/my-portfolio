@@ -1,5 +1,5 @@
 export const EXERCISE_TYPES = [
-  "flashcard", "meaning-quiz", "reading-quiz", "typing-quiz", "matching",
+  "flashcard", "reverse-flashcard", "meaning-quiz", "reading-quiz", "typing-quiz", "matching",
 ] as const;
 
 export type ExerciseType = (typeof EXERCISE_TYPES)[number];
@@ -10,6 +10,7 @@ export function isExerciseType(value: string): value is ExerciseType {
 
 export const EXERCISES = [
   { type: "flashcard", label: "Flashcard", desc: "Lật thẻ ôn từ vựng", emoji: "🃏" },
+  { type: "reverse-flashcard", label: "Flashcard đảo ngược", desc: "Xem nghĩa tiếng Việt, lật thẻ để xem từ tiếng Nhật", emoji: "🔄" },
   { type: "meaning-quiz", label: "Quiz nghĩa", desc: "Chọn nghĩa đúng của từ", emoji: "🧠" },
   { type: "reading-quiz", label: "Quiz đọc", desc: "Chọn cách đọc đúng (kana)", emoji: "👁" },
   { type: "typing-quiz", label: "Quiz gõ", desc: "Gõ romaji từ nghĩa của từ", emoji: "⌨️" },
